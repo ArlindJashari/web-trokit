@@ -257,7 +257,7 @@ const ServiceGrid = ({ services }) => {
                                     </p>
                                 </div>
 
-                                <div className="relative z-10 flex items-center gap-4 mt-8">
+                                <div className="relative z-10 flex items-center gap-4 mt-8 mb-6">
                                     <span className="text-[10px] tracking-[0.5em] font-black uppercase text-white/40 group-hover:text-brand transition-colors">Full Spec</span>
                                     <div className="h-[1px] flex-1 bg-white/5 group-hover:bg-brand/30 transition-colors"></div>
                                 </div>
