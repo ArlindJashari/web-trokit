@@ -53,10 +53,45 @@ const ServiceGrid = ({ services }) => {
 
     useEffect(() => {
         if (selectedService) {
+            // Save current scroll position
+            const scrollY = window.scrollY;
+            // Lock body scroll (works with and without Lenis)
+            document.body.style.position = 'fixed';
+            document.body.style.top = `-${scrollY}px`;
+            document.body.style.left = '0';
+            document.body.style.right = '0';
             document.body.style.overflow = 'hidden';
         } else {
-            document.body.style.overflow = 'unset';
+            // Restore scroll position
+            const scrollY = document.body.style.top;
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.left = '';
+            document.body.style.right = '';
+            document.body.style.overflow = '';
+            if (scrollY) {
+                window.scrollTo(0, parseInt(scrollY || '0') * -1);
+            }
         }
+        return () => {
+            // Cleanup on unmount
+            document.body.style.position = '';
+            document.body.style.top = '';
+            document.body.style.left = '';
+            document.body.style.right = '';
+            document.body.style.overflow = '';
+        };
+    }, [selectedService]);
+
+    // Close on Escape key
+    useEffect(() => {
+        const handleKeyDown = (e) => {
+            if (e.key === 'Escape' && selectedService) {
+                setSelectedService(null);
+            }
+        };
+        window.addEventListener('keydown', handleKeyDown);
+        return () => window.removeEventListener('keydown', handleKeyDown);
     }, [selectedService]);
 
     return (
@@ -154,41 +189,59 @@ const ServiceGrid = ({ services }) => {
             <AnimatePresence>
                 {selectedService && (
                     <>
+                        {/* Backdrop */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
                             exit={{ opacity: 0 }}
                             onClick={() => setSelectedService(null)}
                             className="fixed inset-0 bg-black/90 backdrop-blur-xl z-[100]"
+                            aria-hidden="true"
                         />
 
+                        {/* Modal Sheet */}
                         <motion.div
+                            role="dialog"
+                            aria-modal="true"
+                            aria-label={selectedService.title}
                             initial={{ y: "100%" }}
                             animate={{ y: 0 }}
                             exit={{ y: "100%" }}
                             transition={{ type: "spring", damping: 30, stiffness: 200 }}
-                            data-lenis-prevent
-                            className="fixed bottom-0 left-0 right-0 z-[101] bg-[#0A0A0A] border-t border-white/10 rounded-t-[40px] max-h-[92vh] overflow-y-auto px-8 pb-16 pt-6 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]"
+                            className="fixed bottom-0 left-0 right-0 z-[101] bg-[#0A0A0A] border-t border-white/10 rounded-t-[40px] shadow-[0_-20px_50px_rgba(0,0,0,0.5)]"
+                            style={{ maxHeight: '92dvh', height: '92dvh' }}
+                            onClick={(e) => e.stopPropagation()}
                         >
-                            <div className="w-16 h-1.5 bg-white/10 rounded-full mx-auto mb-10 cursor-pointer hover:bg-white/20 transition-colors" onClick={() => setSelectedService(null)}></div>
-
-                            <div className="max-w-3xl mx-auto">
-                                <div className="flex justify-between items-start mb-16">
+                            {/* Sticky drag handle + close button */}
+                            <div className="sticky top-0 z-10 bg-[#0A0A0A] rounded-t-[40px] pt-4 pb-3 px-8 flex flex-col items-center border-b border-white/5">
+                                <div
+                                    className="w-16 h-1.5 bg-white/10 rounded-full mb-3 cursor-pointer hover:bg-white/20 transition-colors"
+                                    onClick={() => setSelectedService(null)}
+                                />
+                                <div className="w-full flex justify-between items-center">
                                     <div>
-                                        <span className="text-[10px] tracking-[0.5em] text-brand font-black uppercase mb-4 block">Vue Détaillée de l'Unité</span>
-                                        <h2 className="text-5xl md:text-7xl font-display uppercase tracking-tight leading-none text-white">{selectedService.title}</h2>
+                                        <span className="text-xs tracking-[0.5em] text-brand font-black uppercase block">Vue Détaillée de l'Unité</span>
+                                        <h2 className="text-3xl md:text-5xl font-display uppercase tracking-tight leading-none text-white mt-1">{selectedService.title}</h2>
                                     </div>
                                     <button
                                         onClick={() => setSelectedService(null)}
-                                        className="p-4 bg-white/5 rounded-full hover:bg-white/10 transition-all hover:rotate-90"
+                                        className="p-3 bg-white/5 rounded-full hover:bg-white/10 transition-all hover:rotate-90 flex-shrink-0 ml-4"
+                                        aria-label="Fermer"
                                     >
-                                        <X size={28} className="text-white" />
+                                        <X size={24} className="text-white" />
                                     </button>
                                 </div>
+                            </div>
 
-                                <div className="grid grid-cols-1 gap-16 mb-20">
-                                    <div className="space-y-12">
-                                        <div className="aspect-[16/9] md:aspect-[21/9] rounded-3xl overflow-hidden mb-12 border border-white/10">
+                            {/* Scrollable content area */}
+                            <div
+                                className="overflow-y-auto h-[calc(100%-110px)] px-8 pb-16 pt-8"
+                                style={{ WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}
+                            >
+                                <div className="max-w-3xl mx-auto">
+                                    <div className="space-y-10">
+                                        {/* Image */}
+                                        <div className="aspect-[16/9] md:aspect-[21/9] rounded-3xl overflow-hidden border border-white/10">
                                             <img
                                                 src={selectedService.image}
                                                 alt={selectedService.title}
@@ -196,8 +249,9 @@ const ServiceGrid = ({ services }) => {
                                             />
                                         </div>
 
+                                        {/* Description */}
                                         <div className="max-w-4xl">
-                                            <h4 className="text-[10px] tracking-[0.4em] text-gray-400 uppercase font-black mb-6">Présentation du Service</h4>
+                                            <h4 className="text-xs tracking-[0.4em] text-gray-400 uppercase font-black mb-6">Présentation du Service</h4>
                                             <p className="text-gray-200 leading-relaxed text-xl font-light italic whitespace-pre-line border-l-2 border-brand/30 pl-8 mb-12">
                                                 {selectedService.fullDescription || selectedService.description}
                                             </p>
@@ -205,9 +259,11 @@ const ServiceGrid = ({ services }) => {
                                             <button
                                                 onClick={() => {
                                                     setSelectedService(null);
-                                                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                                                    setTimeout(() => {
+                                                        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                                                    }, 300);
                                                 }}
-                                                className="px-12 py-5 bg-brand text-black text-[10px] tracking-[0.5em] font-black uppercase hover:bg-white transition-all shadow-[0_20px_40px_rgba(223,166,101,0.2)]"
+                                                className="px-12 py-5 bg-brand text-black text-xs tracking-[0.5em] font-black uppercase hover:bg-white transition-all shadow-[0_20px_40px_rgba(223,166,101,0.2)]"
                                             >
                                                 Contactez-nous
                                             </button>
