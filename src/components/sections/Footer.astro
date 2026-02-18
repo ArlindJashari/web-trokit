@@ -16,7 +16,7 @@ import {
         >Contact</span
       >
       <h2
-        class="text-4xl xs:text-5xl md:text-8xl lg:text-[120px] font-display uppercase tracking-tighter leading-[0.9] md:leading-none"
+        class="text-3xl xs:text-4xl md:text-6xl lg:text-[90px] font-display uppercase tracking-tighter leading-[0.9] md:leading-none"
       >
         Prêt pour la <br class="hidden xs:block" /> perfection ?
       </h2>
@@ -24,7 +24,7 @@ import {
 
     {/* Contact & Form Grid: Responsive stack */}
     <div
-      class="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 mb-24 md:mb-32 items-start lg:items-end"
+      class="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 mb-16 md:mb-24 items-start"
     >
       {/* Left: Contact Details */}
       <div class="space-y-12 md:space-y-16">
@@ -139,6 +139,25 @@ import {
           </button>
         </form>
       </div>
+    </div>
+
+    {/* Map Location Section */}
+    <div
+      class="w-full h-[400px] mb-24 md:mb-32 rounded-3xl overflow-hidden border border-white/10 group relative"
+    >
+      <div
+        class="absolute inset-0 bg-brand/10 group-hover:bg-transparent transition-colors duration-700 z-10 pointer-events-none"
+      >
+      </div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2763.5186596486163!2d7.297455822359487!3d46.21958210344238!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x478ede710892095b%3A0xe78aeff1a2c3961b!2sRte%20de%20l'Industrie%201%2C%201964%20Conthey!5e0!3m2!1sfr!2sch!4v1707834512345!5m2!1sfr!2sch"
+        width="100%"
+        height="100%"
+        style="border:0; filter: grayscale(1) invert(0.9) contrast(1.2) brightness(0.8);"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        class="grayscale contrast-125"></iframe>
     </div>
 
     {/* Big Brand Watermark: Responsive positioning */}
