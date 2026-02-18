@@ -11,14 +11,14 @@ const ServiceCard = ({ title, description, Icon }) => {
                     <div className="text-brand">
                         <IconComponent size={32} weight="thin" />
                     </div>
-                    <span className="text-[10px] tracking-[0.3em] font-sans text-gray-600 uppercase">Premium</span>
+                    <span className="text-[10px] tracking-[0.3em] font-sans text-gray-400 uppercase">Premium</span>
                 </div>
 
                 <div className="space-y-4">
                     <h3 className="text-2xl font-display font-medium tracking-tight uppercase leading-none">
                         {title}
                     </h3>
-                    <p className="text-sm text-gray-500 font-sans leading-relaxed line-clamp-3">
+                    <p className="text-sm text-gray-300 font-sans leading-relaxed line-clamp-3">
                         {description}
                     </p>
                 </div>

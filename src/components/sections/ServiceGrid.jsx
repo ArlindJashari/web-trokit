@@ -130,12 +130,12 @@ const ServiceGrid = ({ services }) => {
                                             <span className="text-[10px] tracking-[0.6em] font-black text-brand uppercase opacity-40">Unit 0{index + 1}</span>
                                             <Icon className="text-brand h-16 w-16 opacity-80 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110" weight="light" />
                                         </div>
-                                        <span className="text-[8px] tracking-[0.4em] font-sans text-gray-500 group-hover:text-white uppercase vertical-text transition-colors duration-500">Premium Service Unit</span>
+                                        <span className="text-[8px] tracking-[0.4em] font-sans text-gray-400 group-hover:text-white uppercase vertical-text transition-colors duration-500">Premium Service Unit</span>
                                     </div>
 
                                     <div>
                                         <h3 className="text-2xl font-display font-medium uppercase tracking-tight mb-4 group-hover:text-brand transition-colors leading-none">{service.title}</h3>
-                                        <p className="text-sm text-gray-300 leading-relaxed max-w-[280px]">
+                                        <p className="text-sm text-gray-200 leading-relaxed max-w-[280px]">
                                             {service.description}
                                         </p>
                                     </div>
@@ -197,8 +197,8 @@ const ServiceGrid = ({ services }) => {
                                         </div>
 
                                         <div className="max-w-4xl">
-                                            <h4 className="text-[10px] tracking-[0.4em] text-gray-500 uppercase font-black mb-6">Présentation du Service</h4>
-                                            <p className="text-gray-300 leading-relaxed text-xl font-light italic whitespace-pre-line border-l-2 border-brand/30 pl-8 mb-12">
+                                            <h4 className="text-[10px] tracking-[0.4em] text-gray-400 uppercase font-black mb-6">Présentation du Service</h4>
+                                            <p className="text-gray-200 leading-relaxed text-xl font-light italic whitespace-pre-line border-l-2 border-brand/30 pl-8 mb-12">
                                                 {selectedService.fullDescription || selectedService.description}
                                             </p>
 
