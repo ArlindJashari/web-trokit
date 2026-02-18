@@ -8,14 +8,14 @@ const icons = {
 const ServiceGrid = ({ services }) => {
     return (
         <section className="py-12 md:py-24 relative">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 items-start">
+            <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
                 {services.map((service, index) => {
                     const Icon = icons[service.icon] || Sparkle;
 
                     return (
                         <div
                             key={service.id}
-                            className="flex flex-col h-full bg-[#0A0A0A] border border-white/5 rounded-[32px] overflow-hidden hover:border-brand/30 transition-all duration-700 group"
+                            className="break-inside-avoid mb-8 flex flex-col bg-[#0A0A0A] border border-white/5 rounded-[32px] overflow-hidden hover:border-brand/30 transition-all duration-700 group"
                         >
                             {/* Image Section */}
                             <div className="relative aspect-video overflow-hidden">
@@ -38,7 +38,7 @@ const ServiceGrid = ({ services }) => {
                             </div>
 
                             {/* Text Content */}
-                            <div className="p-8 md:p-10 flex flex-col flex-1">
+                            <div className="p-8 md:p-10 flex flex-col">
                                 <h3 className="text-2xl font-display font-medium uppercase tracking-tight mb-6 text-white group-hover:text-brand transition-colors">
                                     {service.title}
                                 </h3>
@@ -50,7 +50,7 @@ const ServiceGrid = ({ services }) => {
                                     </div>
                                 </div>
 
-                                <div className="mt-auto pt-8 flex items-center gap-4">
+                                <div className="mt-8 pt-8 flex items-center gap-4">
                                     <div className="h-[1px] flex-1 bg-white/5 group-hover:bg-brand/30 transition-colors" />
                                     <span className="text-[9px] tracking-[0.5em] font-black text-white/10 uppercase group-hover:text-brand/50 transition-colors">Elite Detailing</span>
                                 </div>
