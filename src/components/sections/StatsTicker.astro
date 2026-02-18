@@ -2,26 +2,34 @@
 import { siteData } from "../../data/siteContent";
 ---
 
-<section class="bg-black text-white border-t border-b border-white/10">
-  <div class="max-w-[1440px] mx-auto">
+<section
+  class="bg-[#274C70] text-white border-t border-b border-white/10 relative overflow-hidden"
+>
+  {/* Subtle texture overlay for premium feel */}
+  <div
+    class="absolute inset-0 opacity-10 pointer-events-none bg-[url('/noise.png')]"
+  >
+  </div>
+
+  <div class="max-w-[1440px] mx-auto relative z-10">
     <div class="grid grid-cols-1 md:grid-cols-2">
       {
         siteData.stats.map((stat, index) => (
           <div
             class={`flex items-center gap-8 lg:gap-12 p-12 lg:p-20 ${
               index === 0
-                ? "border-b md:border-b-0 md:border-r border-white/10"
+                ? "border-b md:border-b-0 md:border-r border-white/20"
                 : ""
             }`}
           >
             <div class="flex items-baseline reveal-stat">
               <span
-                class="text-7xl md:text-8xl lg:text-[120px] font-display font-black tracking-tighter leading-none stat-number inline-block"
+                class="text-7xl md:text-8xl lg:text-[120px] font-display font-black tracking-tighter leading-none stat-number inline-block text-white"
                 data-target={stat.value}
               >
                 0
               </span>
-              <span class="text-4xl lg:text-6xl font-display font-light text-brand ml-1">
+              <span class="text-4xl lg:text-6xl font-display font-light text-white/90 ml-2">
                 {stat.suffix}
               </span>
             </div>
@@ -30,7 +38,7 @@ import { siteData } from "../../data/siteContent";
               <h3 class="text-xl md:text-2xl lg:text-3xl font-display font-medium text-white uppercase tracking-tight">
                 {stat.label}
               </h3>
-              <p class="text-xs md:text-sm text-gray-500 leading-relaxed font-sans font-light">
+              <p class="text-sm text-white/80 leading-relaxed font-sans font-light">
                 {stat.subtext}
               </p>
             </div>
