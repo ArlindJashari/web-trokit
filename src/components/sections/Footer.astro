@@ -7,111 +7,133 @@ import {
 } from "@phosphor-icons/react";
 ---
 
-<footer class="bg-black text-white pt-32 pb-12" id="contact">
+<footer class="bg-black text-white pt-24 md:pt-32 pb-8 md:pb-12" id="contact">
   <div class="max-w-[1440px] mx-auto px-6">
-    {/* Contact Header */}
-    <div class="flex flex-col mb-24">
-      <span class="text-xs tracking-[0.5em] text-brand uppercase font-bold mb-4"
+    {/* Contact Header: Optimized for small screens */}
+    <div class="flex flex-col mb-16 md:mb-24">
+      <span
+        class="text-[10px] md:text-xs tracking-[0.5em] text-brand uppercase font-bold mb-4"
         >Contact</span
       >
       <h2
-        class="text-6xl md:text-8xl lg:text-[120px] font-display uppercase tracking-tighter leading-none"
+        class="text-4xl xs:text-5xl md:text-8xl lg:text-[120px] font-display uppercase tracking-tighter leading-[0.9] md:leading-none"
       >
-        Prêt pour la <br /> perfection ?
+        Prêt pour la <br class="hidden xs:block" /> perfection ?
       </h2>
     </div>
 
-    {/* Contact & Form Grid */}
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 mb-32 items-end">
+    {/* Contact & Form Grid: Responsive stack */}
+    <div
+      class="grid grid-cols-1 lg:grid-cols-2 gap-16 md:gap-24 mb-24 md:mb-32 items-start lg:items-end"
+    >
       {/* Left: Contact Details */}
-      <div class="space-y-16">
-        <div class="flex flex-col gap-4">
-          <span class="text-[10px] tracking-[0.4em] text-gray-600 uppercase"
+      <div class="space-y-12 md:space-y-16">
+        <div class="flex flex-col gap-3 md:gap-4">
+          <span
+            class="text-[9px] md:text-[10px] tracking-[0.4em] text-gray-600 uppercase"
             >Appelez-nous directement</span
           >
           <a
             href={`tel:${siteData.brand.contact.phone[0]}`}
-            class="text-4xl md:text-6xl lg:text-7xl font-display font-medium tracking-tight hover:text-brand transition-colors"
+            class="text-3xl xs:text-4xl md:text-6xl lg:text-7xl font-display font-medium tracking-tight hover:text-brand transition-colors break-words"
           >
             {siteData.brand.contact.phone[0]}
           </a>
         </div>
 
         <div
-          class="grid grid-cols-1 md:grid-cols-2 gap-12 pt-8 border-t border-white/10"
+          class="grid grid-cols-1 sm:grid-cols-2 gap-10 md:gap-12 pt-8 border-t border-white/10"
         >
-          <div>
+          <div class="space-y-4">
             <span
-              class="text-[10px] tracking-[0.4em] text-gray-600 uppercase mb-4 block"
+              class="text-[9px] md:text-[10px] tracking-[0.4em] text-gray-600 uppercase block"
               >Visitez l'Atelier</span
             >
             <p
-              class="text-gray-400 font-sans text-xs tracking-widest leading-relaxed uppercase"
+              class="text-gray-400 font-sans text-[10px] md:text-xs tracking-widest leading-relaxed uppercase max-w-[200px]"
             >
               {siteData.brand.contact.address}
             </p>
           </div>
-          <div>
+          <div class="space-y-4">
             <span
-              class="text-[10px] tracking-[0.4em] text-gray-600 uppercase mb-4 block"
+              class="text-[9px] md:text-[10px] tracking-[0.4em] text-gray-600 uppercase block"
               >Réseaux Sociaux</span
             >
-            <div class="flex gap-8">
+            <div class="flex gap-6 md:gap-8">
               <a
                 href={siteData.brand.socials.instagram}
-                class="text-gray-400 hover:text-brand transition-colors"
+                class="text-gray-400 hover:text-brand transition-all hover:scale-110"
+                aria-label="Instagram"
               >
-                <InstagramLogo size={28} weight="bold" />
+                <InstagramLogo
+                  size={24}
+                  weight="bold"
+                  className="md:w-7 md:h-7"
+                />
               </a>
               <a
                 href={siteData.brand.socials.facebook}
-                class="text-gray-400 hover:text-brand transition-colors"
+                class="text-gray-400 hover:text-brand transition-all hover:scale-110"
+                aria-label="Facebook"
               >
-                <FacebookLogo size={28} weight="bold" />
+                <FacebookLogo
+                  size={24}
+                  weight="bold"
+                  className="md:w-7 md:h-7"
+                />
               </a>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Right: Modern Form */}
-      <div>
-        <form class="space-y-8">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {/* Right: Modern Form: Better spacing on mobile */}
+      <div
+        class="bg-white/[0.02] p-8 md:p-0 rounded-3xl md:rounded-none border border-white/5 md:border-none"
+      >
+        <form class="space-y-6 md:space-y-8">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-8">
             <div class="flex flex-col gap-2">
-              <label class="text-[10px] tracking-widest text-gray-600 uppercase"
+              <label
+                class="text-[9px] md:text-[10px] tracking-widest text-gray-600 uppercase"
                 >Nom</label
               >
               <input
                 type="text"
-                class="w-full bg-transparent border-b border-white/20 py-4 focus:border-brand outline-none transition-colors"
+                placeholder="Votre nom"
+                class="w-full bg-transparent border-b border-white/20 py-3 md:py-4 focus:border-brand outline-none transition-colors text-sm placeholder:text-gray-800"
               />
             </div>
             <div class="flex flex-col gap-2">
-              <label class="text-[10px] tracking-widest text-gray-600 uppercase"
+              <label
+                class="text-[9px] md:text-[10px] tracking-widest text-gray-600 uppercase"
                 >E-mail</label
               >
               <input
                 type="email"
-                class="w-full bg-transparent border-b border-white/20 py-4 focus:border-brand outline-none transition-colors"
+                placeholder="votre@email.com"
+                class="w-full bg-transparent border-b border-white/20 py-3 md:py-4 focus:border-brand outline-none transition-colors text-sm placeholder:text-gray-800"
               />
             </div>
           </div>
           <div class="flex flex-col gap-2">
-            <label class="text-[10px] tracking-widest text-gray-600 uppercase"
+            <label
+              class="text-[9px] md:text-[10px] tracking-widest text-gray-600 uppercase"
               >Message</label
             >
             <textarea
               rows="3"
-              class="w-full bg-transparent border-b border-white/20 py-4 focus:border-brand outline-none transition-colors resize-none"
+              placeholder="Comment pouvons-nous vous aider ?"
+              class="w-full bg-transparent border-b border-white/20 py-3 md:py-4 focus:border-brand outline-none transition-colors resize-none text-sm placeholder:text-gray-800"
             ></textarea>
           </div>
           <button
-            class="group flex items-center gap-6 text-xs tracking-[0.4em] font-black uppercase py-4 border-b-2 border-brand"
+            class="group flex items-center justify-between sm:justify-start sm:gap-6 w-full sm:w-auto text-[10px] tracking-[0.4em] font-black uppercase py-4 border-b-2 border-brand hover:text-brand transition-colors"
           >
             Envoyer votre demande
             <PaperPlaneTilt
-              size={20}
+              size={18}
               className="group-hover:translate-x-2 transition-transform"
             />
           </button>
@@ -119,26 +141,31 @@ import {
       </div>
     </div>
 
-    {/* Big Brand Watermark */}
-    <div class="relative pt-24 mt-24 border-t border-white/10">
+    {/* Big Brand Watermark: Responsive positioning */}
+    <div
+      class="relative pt-16 md:pt-24 mt-16 md:mt-24 border-t border-white/10"
+    >
       <div
-        class="absolute inset-x-0 -top-24 flex justify-center opacity-[0.03] select-none pointer-events-none overflow-hidden"
+        class="absolute inset-x-0 -top-12 md:-top-24 flex justify-center opacity-[0.02] md:opacity-[0.03] select-none pointer-events-none overflow-hidden"
       >
         <img
           src="/ELITE-LOGO-WHITE.svg"
           alt="Elite Watermark"
-          class="w-[60vw] h-auto grayscale"
+          class="w-[80vw] md:w-[60vw] h-auto grayscale"
         />
       </div>
 
       <div
-        class="flex flex-col md:flex-row justify-between w-full items-center gap-8 text-[10px] tracking-[0.4em] text-gray-600 uppercase font-bold relative z-10"
+        class="flex flex-col md:flex-row justify-between w-full items-center gap-8 md:gap-12 text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] text-gray-600 uppercase font-bold relative z-10"
       >
-        <span class="order-2 md:order-1"
+        <span
+          class="order-3 md:order-1 text-center md:text-left opacity-60 md:opacity-100"
           >&copy; {new Date().getFullYear()} {siteData.brand.name}</span
         >
 
-        <nav class="flex gap-12 order-1 md:order-2">
+        <nav
+          class="flex flex-wrap justify-center gap-6 sm:gap-12 order-1 md:order-2"
+        >
           <a href="#" class="hover:text-white transition-colors"
             >Confidentialité</a
           >
