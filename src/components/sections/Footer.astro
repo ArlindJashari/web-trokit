@@ -1,0 +1,158 @@
+---
+import { siteData } from "../../data/siteContent";
+import {
+  InstagramLogo,
+  FacebookLogo,
+  PaperPlaneTilt,
+} from "@phosphor-icons/react";
+---
+
+<footer class="bg-black text-white pt-32 pb-12" id="contact">
+  <div class="max-w-[1440px] mx-auto px-6">
+    {/* Contact Header */}
+    <div class="flex flex-col mb-24">
+      <span class="text-xs tracking-[0.5em] text-brand uppercase font-bold mb-4"
+        >Contact</span
+      >
+      <h2
+        class="text-6xl md:text-8xl lg:text-[120px] font-display uppercase tracking-tighter leading-none"
+      >
+        Prêt pour la <br /> perfection ?
+      </h2>
+    </div>
+
+    {/* Contact & Form Grid */}
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 mb-32 items-end">
+      {/* Left: Contact Details */}
+      <div class="space-y-16">
+        <div class="flex flex-col gap-4">
+          <span class="text-[10px] tracking-[0.4em] text-gray-600 uppercase"
+            >Appelez-nous directement</span
+          >
+          <a
+            href={`tel:${siteData.brand.contact.phone[0]}`}
+            class="text-4xl md:text-6xl lg:text-7xl font-display font-medium tracking-tight hover:text-brand transition-colors"
+          >
+            {siteData.brand.contact.phone[0]}
+          </a>
+        </div>
+
+        <div
+          class="grid grid-cols-1 md:grid-cols-2 gap-12 pt-8 border-t border-white/10"
+        >
+          <div>
+            <span
+              class="text-[10px] tracking-[0.4em] text-gray-600 uppercase mb-4 block"
+              >Visitez l'Atelier</span
+            >
+            <p
+              class="text-gray-400 font-sans text-xs tracking-widest leading-relaxed uppercase"
+            >
+              {siteData.brand.contact.address}
+            </p>
+          </div>
+          <div>
+            <span
+              class="text-[10px] tracking-[0.4em] text-gray-600 uppercase mb-4 block"
+              >Réseaux Sociaux</span
+            >
+            <div class="flex gap-8">
+              <a
+                href={siteData.brand.socials.instagram}
+                class="text-gray-400 hover:text-brand transition-colors"
+              >
+                <InstagramLogo size={28} weight="bold" />
+              </a>
+              <a
+                href={siteData.brand.socials.facebook}
+                class="text-gray-400 hover:text-brand transition-colors"
+              >
+                <FacebookLogo size={28} weight="bold" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Right: Modern Form */}
+      <div>
+        <form class="space-y-8">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="flex flex-col gap-2">
+              <label class="text-[10px] tracking-widest text-gray-600 uppercase"
+                >Nom</label
+              >
+              <input
+                type="text"
+                class="w-full bg-transparent border-b border-white/20 py-4 focus:border-brand outline-none transition-colors"
+              />
+            </div>
+            <div class="flex flex-col gap-2">
+              <label class="text-[10px] tracking-widest text-gray-600 uppercase"
+                >E-mail</label
+              >
+              <input
+                type="email"
+                class="w-full bg-transparent border-b border-white/20 py-4 focus:border-brand outline-none transition-colors"
+              />
+            </div>
+          </div>
+          <div class="flex flex-col gap-2">
+            <label class="text-[10px] tracking-widest text-gray-600 uppercase"
+              >Message</label
+            >
+            <textarea
+              rows="3"
+              class="w-full bg-transparent border-b border-white/20 py-4 focus:border-brand outline-none transition-colors resize-none"
+            ></textarea>
+          </div>
+          <button
+            class="group flex items-center gap-6 text-xs tracking-[0.4em] font-black uppercase py-4 border-b-2 border-brand"
+          >
+            Envoyer votre demande
+            <PaperPlaneTilt
+              size={20}
+              className="group-hover:translate-x-2 transition-transform"
+            />
+          </button>
+        </form>
+      </div>
+    </div>
+
+    {/* Big Brand Watermark */}
+    <div class="relative pt-24 mt-24 border-t border-white/10">
+      <div
+        class="absolute inset-x-0 -top-24 flex justify-center opacity-[0.03] select-none pointer-events-none overflow-hidden"
+      >
+        <img
+          src="/ELITE-LOGO-WHITE.svg"
+          alt="Elite Watermark"
+          class="w-[60vw] h-auto grayscale"
+        />
+      </div>
+
+      <div
+        class="flex flex-col md:flex-row justify-between w-full items-center gap-8 text-[10px] tracking-[0.4em] text-gray-600 uppercase font-bold relative z-10"
+      >
+        <span class="order-2 md:order-1"
+          >&copy; {new Date().getFullYear()} {siteData.brand.name}</span
+        >
+
+        <nav class="flex gap-12 order-1 md:order-2">
+          <a href="#" class="hover:text-white transition-colors"
+            >Confidentialité</a
+          >
+          <a href="#" class="hover:text-white transition-colors">Conditions</a>
+          <a href="#" class="hover:text-white transition-colors">Cookies</a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .daleton-logo {
+    letter-spacing: -0.05em;
+    transform: scaleX(1.15);
+  }
+</style>

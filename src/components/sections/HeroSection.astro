@@ -1,0 +1,183 @@
+---
+import { siteData } from "../../data/siteContent";
+import { Image } from "astro:assets";
+import heroPorsche from "../../assets/porsche-hero.jpg";
+import ServiceGrid from "./ServiceGrid.jsx";
+---
+
+<section
+  class="bg-black text-white pt-20 pb-12 overflow-hidden hero-section"
+  id="hero"
+>
+  <div class="max-w-[1440px] mx-auto px-6">
+    {/* Brand Identity Header */}
+    {/* Brand Identity Header */}
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-center mb-12 py-8">
+      {/* Left: Phone */}
+      <div class="flex flex-col gap-1 order-2 md:order-1 reveal-hero-contact">
+        <span
+          class="text-[10px] tracking-[0.4em] font-sans text-gray-500 uppercase"
+          >Contactez-nous</span
+        >
+        <a
+          href={`tel:${siteData.brand.contact.phone[0]}`}
+          class="text-xl font-display tracking-tight hover:text-brand transition-colors"
+        >
+          {siteData.brand.contact.phone[0]}
+        </a>
+      </div>
+
+      {/* Center: Brand Logo */}
+      <div class="flex justify-center order-1 md:order-2 reveal-hero-logo">
+        <img
+          src="/ELITE-LOGO-WHITE.svg"
+          alt={siteData.brand.name}
+          class="h-20 md:h-28 lg:h-36 w-auto object-contain"
+        />
+      </div>
+
+      {/* Right: Modern Navigation */}
+      <div
+        class="flex flex-col gap-6 items-center md:items-end order-3 reveal-hero-nav"
+      >
+        <nav class="flex gap-8 items-center">
+          <a
+            href="#services"
+            class="text-[10px] tracking-[0.4em] uppercase font-black text-gray-400 hover:text-brand transition-all"
+            >Services</a
+          >
+          <div class="w-1 h-1 rounded-full bg-white/20"></div>
+          <a
+            href="#projects"
+            class="text-[10px] tracking-[0.4em] uppercase font-black text-gray-400 hover:text-brand transition-all"
+            >Galerie</a
+          >
+          <div class="w-1 h-1 rounded-full bg-white/20"></div>
+          <a
+            href="#contact"
+            class="text-[10px] tracking-[0.4em] uppercase font-black text-gray-400 hover:text-brand transition-all"
+            >Contact</a
+          >
+        </nav>
+
+        <div
+          class="flex items-center gap-6 pt-6 border-t border-white/10 w-full justify-end"
+        >
+          <div class="flex flex-col items-end">
+            <span
+              class="text-[10px] tracking-[0.5em] text-brand uppercase font-black"
+              >LE STANDARD VALAISAN</span
+            >
+            <span class="text-[9px] text-gray-500 uppercase tracking-widest"
+              >Conthey, Suisse</span
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+
+    {/* Featured Visual Frame */}
+    <div
+      class="relative w-full aspect-[16/7] overflow-hidden group bg-black reveal-hero-image"
+    >
+      <video
+        autoplay
+        muted
+        loop
+        playsinline
+        class="w-full h-full object-cover transition-all duration-[3s] group-hover:scale-110 contrast-125"
+      >
+        <source src="/3_ELITE_WEBVIDEO.mp4" type="video/mp4" />
+      </video>
+
+      {/* Cinematic Overlays */}
+      <div
+        class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-80"
+      >
+      </div>
+
+      {/* Centered Scroll Indicator */}
+      <div
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-4"
+      >
+        <span
+          class="text-[10px] tracking-[0.6em] uppercase text-white font-bold opacity-80"
+          >DÉFILER POUR EXPLORER</span
+        >
+        <div class="w-[1px] h-12 bg-gradient-to-b from-brand to-transparent">
+        </div>
+      </div>
+
+      {/* Hero Content Overlay */}
+      <div class="absolute bottom-12 left-12 z-20 max-w-2xl">
+        <div class="space-y-6">
+          <div class="flex items-center gap-4">
+            <div class="h-[1px] w-12 bg-brand"></div>
+            <span
+              class="text-xs tracking-[0.6em] text-brand uppercase font-black"
+              >EXCELLENCE AUTOMOBILE</span
+            >
+          </div>
+          <h1
+            class="text-5xl md:text-8xl font-display text-white uppercase tracking-tighter leading-[0.8] reveal-text"
+          >
+            RESTAURER <br />
+            <span class="text-brand">L'EXCELLENCE</span>
+          </h1>
+        </div>
+      </div>
+    </div>
+
+    <div class="py-12">
+      <ServiceGrid services={siteData.services} client:load />
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes scroll-dot {
+    0% {
+      transform: translateY(0);
+      opacity: 0;
+    }
+    30% {
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(12px);
+      opacity: 0;
+    }
+  }
+  .animate-scroll-dot {
+    animation: scroll-dot 2s infinite cubic-bezier(0.19, 1, 0.22, 1);
+  }
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+
+  const tl = gsap.timeline({ defaults: { ease: "power4.out", duration: 1.2 } });
+
+  tl.from(".reveal-hero-top", { opacity: 0, y: -20 })
+    .from(
+      ".reveal-hero-logo",
+      { opacity: 0, scale: 1.1, y: 30, duration: 1.5 },
+      "-=0.8"
+    )
+    .from(".reveal-hero-contact", { opacity: 0, x: -30 }, "-=1")
+    .from(".reveal-hero-nav", { opacity: 0, x: 30 }, "-=1.2")
+    .from(
+      ".reveal-hero-image",
+      { opacity: 0, scale: 0.95, y: 50, duration: 1.5 },
+      "-=1"
+    )
+    .to(
+      ".hero-service-unit",
+      { opacity: 1, y: 0, duration: 1, stagger: 0.15 },
+      "-=1"
+    );
+</script>
