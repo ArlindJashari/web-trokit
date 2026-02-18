@@ -167,6 +167,7 @@ const ServiceGrid = ({ services }) => {
                             animate={{ y: 0 }}
                             exit={{ y: "100%" }}
                             transition={{ type: "spring", damping: 30, stiffness: 200 }}
+                            data-lenis-prevent
                             className="fixed bottom-0 left-0 right-0 z-[101] bg-[#0A0A0A] border-t border-white/10 rounded-t-[40px] max-h-[92vh] overflow-y-auto px-8 pb-16 pt-6 shadow-[0_-20px_50px_rgba(0,0,0,0.5)]"
                         >
                             <div className="w-16 h-1.5 bg-white/10 rounded-full mx-auto mb-10 cursor-pointer hover:bg-white/20 transition-colors" onClick={() => setSelectedService(null)}></div>
