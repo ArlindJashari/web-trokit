@@ -240,24 +240,24 @@ const ServiceGrid = ({ services }) => {
                                     <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-white/5 to-black/0 h-[200%] animate-scanline pointer-events-none"></div>
                                 </div>
 
-                                <div className="relative flex flex-col gap-8 z-10">
-                                    <div className="flex justify-between items-start mb-4">
+                                <div className="relative z-10">
+                                    <div className="flex justify-between items-start">
                                         <div className="flex flex-col gap-6">
                                             <span className="text-sm tracking-[0.6em] font-black text-brand uppercase opacity-80">Unit 0{index + 1}</span>
                                             <Icon className="text-brand h-16 w-16 opacity-80 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110" weight="light" />
                                         </div>
                                         <span className="text-sm tracking-[0.4em] font-sans text-white/50 group-hover:text-white uppercase vertical-text transition-colors duration-500">Premium Service Unit</span>
                                     </div>
-
-                                    <div>
-                                        <h3 className="text-2xl font-display font-medium uppercase tracking-tight mb-4 group-hover:text-brand transition-colors leading-none">{service.title}</h3>
-                                        <p className="text-sm text-gray-200 leading-relaxed max-w-[280px]">
-                                            {service.description}
-                                        </p>
-                                    </div>
                                 </div>
 
-                                <div className="mt-12 flex items-center gap-4">
+                                <div className="relative z-10">
+                                    <h3 className="text-2xl font-display font-medium uppercase tracking-tight mb-4 group-hover:text-brand transition-colors leading-none">{service.title}</h3>
+                                    <p className="text-sm text-gray-200 leading-relaxed max-w-[280px]">
+                                        {service.description}
+                                    </p>
+                                </div>
+
+                                <div className="relative z-10 flex items-center gap-4">
                                     <span className="text-sm tracking-[0.4em] font-black uppercase text-white/60 group-hover:text-brand transition-colors">Full Spec</span>
                                     <div className="h-[1px] flex-1 bg-white/5 group-hover:bg-brand/30 transition-colors"></div>
                                 </div>
