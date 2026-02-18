@@ -1,103 +1,185 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
+import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkle, Car, Wrench, ShieldCheck, X, CheckCircle, PaintBrush, Eyeglasses, Disc, ArrowLeft, ArrowRight } from "@phosphor-icons/react";
+import { Sparkle, Car, Wrench, ShieldCheck, X, PaintBrush, Eyeglasses, Disc, ArrowLeft, ArrowRight } from "@phosphor-icons/react";
 
 const icons = {
-    Sparkle: Sparkle,
-    Car: Car,
-    Wrench: Wrench,
-    ShieldCheck: ShieldCheck,
-    PaintBrush: PaintBrush,
-    Eyeglasses: Eyeglasses,
-    Disc: Disc
-};
-
-const serviceDetails = {
-    "tolerie": {
-        features: ["Structural Alignment", "Precision Dent Removal", "Corrosion Protection", "OEM Standards"],
-        process: "Restoring the skeletal and exterior integrity of your vehicle using advanced welding and reshaping techniques."
-    },
-    "reparations": {
-        features: ["Component Overhaul", "Specialized Surfaces", "Industrial Coating", "Rapid Prototyping"],
-        process: "Bespoke repair solutions for unique automotive and aerospace components, ensuring structural and aesthetic longevity."
-    },
-    "peinture": {
-        features: ["Spectrophotometry Match", "Dust-Free Booth", "multi-Stage Clearcoat", "Factory Finish"],
-        process: "Application of premium finishes in controlled environments, utilizing computerized color matching for invisible repairs."
-    },
-    "pare-brise": {
-        features: ["Resin Injection", "Safety Glass Standards", "Sensor Calibration", "Quick Drying"],
-        process: "High-integrity glass restoration and replacement, ensuring maximum visibility and structural safety."
-    },
-    "polissage": {
-        features: ["Swirl Removal", "Depth Recovery", "Nano-Polish Finish", "Hologram Free"],
-        process: "Meticulous surface refinement that removes oxidation and defects to restore the maximum refractive potential of the paint."
-    },
-    "jantes": {
-        features: ["Alloy Resurfacing", "Face Machining", "Brake Dust Barrier", "Custom Color"],
-        process: "Complete wheel refurbishment, from deep chemical decontamination to high-precision resurfacing and protective coating."
-    }
+    Sparkle, Car, Wrench, ShieldCheck, PaintBrush, Eyeglasses, Disc
 };
 
 const ServiceGrid = ({ services }) => {
     const [selectedService, setSelectedService] = useState(null);
-    const scrollRef = React.useRef(null);
+    const [mounted, setMounted] = useState(false);
+    const scrollRef = useRef(null);
+
+    // Wait for client mount before using portals
+    useEffect(() => { setMounted(true); }, []);
 
     const scroll = (direction) => {
         if (scrollRef.current) {
             const { scrollLeft, clientWidth } = scrollRef.current;
-            const scrollTo = direction === 'left' ? scrollLeft - clientWidth / 2 : scrollLeft + clientWidth / 2;
+            const scrollTo = direction === 'left'
+                ? scrollLeft - clientWidth / 2
+                : scrollLeft + clientWidth / 2;
             scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
         }
     };
 
+    // ─── Scroll Lock ─────────────────────────────────────────────────────────
+    // Lock on <html> element — no layout shift, no viewport jump.
+    // Also stop/start Lenis so it doesn't intercept modal scroll events.
     useEffect(() => {
-        const lenis = (window).lenis;
+        const lenis = window.lenis;
+        const html = document.documentElement;
 
         if (selectedService) {
-            // Stop Lenis smooth scroll so it doesn't intercept modal scroll
             lenis?.stop();
-            // Lock body scroll
-            const scrollY = window.scrollY;
-            document.body.dataset.scrollY = String(scrollY);
-            document.body.style.position = 'fixed';
-            document.body.style.top = `-${scrollY}px`;
-            document.body.style.left = '0';
-            document.body.style.right = '0';
-            document.body.style.overflow = 'hidden';
+            html.style.overflow = 'hidden';
         } else {
-            // Restore Lenis
             lenis?.start();
-            // Restore body scroll
-            const scrollY = document.body.dataset.scrollY || '0';
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.left = '';
-            document.body.style.right = '';
-            document.body.style.overflow = '';
-            window.scrollTo(0, parseInt(scrollY));
+            html.style.overflow = '';
         }
 
         return () => {
             lenis?.start();
-            document.body.style.position = '';
-            document.body.style.top = '';
-            document.body.style.left = '';
-            document.body.style.right = '';
-            document.body.style.overflow = '';
+            html.style.overflow = '';
         };
     }, [selectedService]);
 
-    // Close on Escape key
+    // ─── Escape key ──────────────────────────────────────────────────────────
     useEffect(() => {
-        const handleKeyDown = (e) => {
-            if (e.key === 'Escape' && selectedService) {
-                setSelectedService(null);
-            }
-        };
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [selectedService]);
+        const onKey = (e) => { if (e.key === 'Escape') setSelectedService(null); };
+        window.addEventListener('keydown', onKey);
+        return () => window.removeEventListener('keydown', onKey);
+    }, []);
+
+    // ─── Modal via Portal ────────────────────────────────────────────────────
+    const modal = selectedService && mounted && createPortal(
+        <AnimatePresence>
+            {selectedService && (
+                <>
+                    {/* Backdrop */}
+                    <motion.div
+                        key="backdrop"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.25 }}
+                        onClick={() => setSelectedService(null)}
+                        style={{ position: 'fixed', inset: 0, zIndex: 9998, background: 'rgba(0,0,0,0.85)', backdropFilter: 'blur(16px)' }}
+                        aria-hidden="true"
+                    />
+
+                    {/* Sheet — always anchored to viewport bottom, never affected by scroll position */}
+                    <motion.div
+                        key="sheet"
+                        role="dialog"
+                        aria-modal="true"
+                        aria-label={selectedService.title}
+                        initial={{ y: '100%' }}
+                        animate={{ y: 0 }}
+                        exit={{ y: '100%' }}
+                        transition={{ type: 'spring', damping: 32, stiffness: 220 }}
+                        onClick={(e) => e.stopPropagation()}
+                        style={{
+                            position: 'fixed',
+                            bottom: 0,
+                            left: 0,
+                            right: 0,
+                            zIndex: 9999,
+                            maxHeight: '92dvh',
+                            display: 'flex',
+                            flexDirection: 'column',
+                            background: '#0A0A0A',
+                            borderTop: '1px solid rgba(255,255,255,0.08)',
+                            borderRadius: '32px 32px 0 0',
+                            boxShadow: '0 -24px 60px rgba(0,0,0,0.6)',
+                        }}
+                    >
+                        {/* ── Header (never scrolls) ── */}
+                        <div style={{ flexShrink: 0, padding: '16px 32px 16px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+                            {/* Drag handle */}
+                            <div
+                                onClick={() => setSelectedService(null)}
+                                style={{ width: 48, height: 5, background: 'rgba(255,255,255,0.12)', borderRadius: 99, margin: '0 auto 16px', cursor: 'pointer' }}
+                            />
+                            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16 }}>
+                                <div>
+                                    <span style={{ display: 'block', fontSize: 10, letterSpacing: '0.5em', color: '#D4A76A', fontWeight: 900, textTransform: 'uppercase', marginBottom: 4 }}>
+                                        Vue Détaillée de l'Unité
+                                    </span>
+                                    <h2 style={{ margin: 0, fontSize: 'clamp(1.5rem, 5vw, 2.5rem)', fontFamily: 'Oswald, sans-serif', textTransform: 'uppercase', letterSpacing: '-0.02em', lineHeight: 1, color: '#fff' }}>
+                                        {selectedService.title}
+                                    </h2>
+                                </div>
+                                <button
+                                    onClick={() => setSelectedService(null)}
+                                    aria-label="Fermer"
+                                    style={{ flexShrink: 0, width: 44, height: 44, borderRadius: '50%', background: 'rgba(255,255,255,0.06)', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', transition: 'background 0.2s' }}
+                                    onMouseEnter={e => e.currentTarget.style.background = 'rgba(255,255,255,0.12)'}
+                                    onMouseLeave={e => e.currentTarget.style.background = 'rgba(255,255,255,0.06)'}
+                                >
+                                    <X size={20} color="#fff" />
+                                </button>
+                            </div>
+                        </div>
+
+                        {/* ── Scrollable body ── */}
+                        {/* flex:1 + minHeight:0 = the only reliable cross-platform scroll pattern inside flex */}
+                        <div
+                            data-lenis-prevent
+                            style={{
+                                flex: 1,
+                                minHeight: 0,
+                                overflowY: 'auto',
+                                WebkitOverflowScrolling: 'touch',
+                                overscrollBehavior: 'contain',
+                                touchAction: 'pan-y',
+                                padding: '32px 32px 64px',
+                            }}
+                        >
+                            <div style={{ maxWidth: 720, margin: '0 auto' }}>
+                                {/* Image */}
+                                <div style={{ borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)', marginBottom: 32, aspectRatio: '16/9' }}>
+                                    <img
+                                        src={selectedService.image}
+                                        alt={selectedService.title}
+                                        style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(1)', transition: 'filter 0.6s' }}
+                                        onMouseEnter={e => e.currentTarget.style.filter = 'grayscale(0)'}
+                                        onMouseLeave={e => e.currentTarget.style.filter = 'grayscale(1)'}
+                                    />
+                                </div>
+
+                                {/* Description */}
+                                <p style={{ fontSize: 10, letterSpacing: '0.4em', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', fontWeight: 900, marginBottom: 16 }}>
+                                    Présentation du Service
+                                </p>
+                                <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.85)', lineHeight: 1.7, fontStyle: 'italic', fontWeight: 300, borderLeft: '2px solid rgba(212,167,106,0.35)', paddingLeft: 24, marginBottom: 40 }}>
+                                    {selectedService.fullDescription || selectedService.description}
+                                </p>
+
+                                {/* CTA */}
+                                <button
+                                    onClick={() => {
+                                        setSelectedService(null);
+                                        setTimeout(() => {
+                                            document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+                                        }, 350);
+                                    }}
+                                    style={{ padding: '16px 40px', background: '#D4A76A', color: '#000', fontSize: 10, letterSpacing: '0.5em', fontWeight: 900, textTransform: 'uppercase', border: 'none', cursor: 'pointer', transition: 'background 0.2s', boxShadow: '0 20px 40px rgba(212,167,106,0.2)' }}
+                                    onMouseEnter={e => e.currentTarget.style.background = '#fff'}
+                                    onMouseLeave={e => e.currentTarget.style.background = '#D4A76A'}
+                                >
+                                    Contactez-nous
+                                </button>
+                            </div>
+                        </div>
+                    </motion.div>
+                </>
+            )}
+        </AnimatePresence>,
+        document.body
+    );
 
     return (
         <>
@@ -115,10 +197,10 @@ const ServiceGrid = ({ services }) => {
                     <ArrowRight size={20} className="text-gray-400 group-hover:text-brand" />
                 </button>
             </div>
+
             <div ref={scrollRef} className="flex flex-col md:flex-row overflow-x-visible md:overflow-x-auto gap-8 pb-12 hide-scrollbar md:snap-x md:snap-mandatory">
                 {services.map((service, index) => {
                     const Icon = icons[service.icon] || Sparkle;
-                    // Even slower and smoother durations
                     const durations = ['12s', '15s', '13s', '18s'];
                     const duration = durations[index % durations.length];
                     const delays = ['0s', '-4s', '-7s', '-2s'];
@@ -130,8 +212,6 @@ const ServiceGrid = ({ services }) => {
                             onClick={() => setSelectedService(service)}
                             className="group relative p-[2px] rounded-[32px] h-[450px] md:h-[500px] w-full md:w-[450px] hero-service-unit cursor-pointer transition-transform duration-700 hover:scale-[1.02] overflow-hidden flex-shrink-0 md:snap-center"
                         >
-                            {/* Permanent but subtle Lightning Border Beam */}
-                            {/* Extra blur for smoothness */}
                             <div
                                 className="absolute inset-[-150%] opacity-50 group-hover:opacity-100 transition-opacity duration-1000 blur-[2px]"
                                 style={{
@@ -140,8 +220,6 @@ const ServiceGrid = ({ services }) => {
                                     animationDelay: delay
                                 }}
                             />
-
-                            {/* Second beam overlay for extra depth on hover */}
                             <div
                                 className="absolute inset-[-150%] opacity-0 group-hover:opacity-100 transition-opacity duration-700"
                                 style={{
@@ -153,14 +231,12 @@ const ServiceGrid = ({ services }) => {
                             />
 
                             <div className="relative bg-[#050505] rounded-[30px] p-10 h-full flex flex-col justify-between transition-all duration-700 z-10 overflow-hidden">
-                                {/* Service Image Background */}
                                 <div className="absolute inset-0 z-0 opacity-30 group-hover:opacity-50 transition-opacity duration-700">
                                     <img
                                         src={service.image}
                                         className="w-full h-full object-cover grayscale brightness-50 contrast-125 transition-transform duration-[2s] group-hover:scale-110"
                                         alt={service.title}
                                     />
-                                    {/* Scanline Overlay */}
                                     <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-white/5 to-black/0 h-[200%] animate-scanline pointer-events-none"></div>
                                 </div>
 
@@ -191,94 +267,8 @@ const ServiceGrid = ({ services }) => {
                 })}
             </div>
 
-            <AnimatePresence>
-                {selectedService && (
-                    <>
-                        {/* Backdrop */}
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            onClick={() => setSelectedService(null)}
-                            className="fixed inset-0 bg-black/90 backdrop-blur-xl z-[100]"
-                            aria-hidden="true"
-                        />
-
-                        {/* Modal Sheet — flex-col: header is flex-shrink-0, body is flex-1 min-h-0 */}
-                        <motion.div
-                            role="dialog"
-                            aria-modal="true"
-                            aria-label={selectedService.title}
-                            initial={{ y: "100%" }}
-                            animate={{ y: 0 }}
-                            exit={{ y: "100%" }}
-                            transition={{ type: "spring", damping: 30, stiffness: 200 }}
-                            className="fixed bottom-0 left-0 right-0 z-[101] bg-[#0A0A0A] border-t border-white/10 rounded-t-[40px] shadow-[0_-20px_50px_rgba(0,0,0,0.5)] flex flex-col"
-                            style={{ maxHeight: '92dvh' }}
-                            onClick={(e) => e.stopPropagation()}
-                        >
-                            {/* Header — flex-shrink-0 ensures it never collapses */}
-                            <div className="flex-shrink-0 rounded-t-[40px] pt-4 pb-4 px-6 md:px-8 border-b border-white/5">
-                                <div
-                                    className="w-16 h-1.5 bg-white/10 rounded-full mx-auto mb-4 cursor-pointer hover:bg-white/20 transition-colors"
-                                    onClick={() => setSelectedService(null)}
-                                />
-                                <div className="flex justify-between items-center">
-                                    <div>
-                                        <span className="text-xs tracking-[0.5em] text-brand font-black uppercase block">Vue Détaillée de l'Unité</span>
-                                        <h2 className="text-2xl md:text-4xl font-display uppercase tracking-tight leading-none text-white mt-1">{selectedService.title}</h2>
-                                    </div>
-                                    <button
-                                        onClick={() => setSelectedService(null)}
-                                        className="p-3 bg-white/5 rounded-full hover:bg-white/10 transition-all hover:rotate-90 flex-shrink-0 ml-4"
-                                        aria-label="Fermer"
-                                    >
-                                        <X size={22} className="text-white" />
-                                    </button>
-                                </div>
-                            </div>
-
-                            {/* Scroll body — flex-1 + min-h-0 is the CRITICAL combo that enables overflow-y-auto in a flex child */}
-                            <div
-                                data-lenis-prevent
-                                className="flex-1 min-h-0 overflow-y-auto px-6 md:px-8 py-8 pb-16"
-                                style={{ WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain', touchAction: 'pan-y' }}
-                            >
-                                <div className="max-w-3xl mx-auto space-y-8">
-                                    {/* Image */}
-                                    <div className="aspect-[16/9] rounded-2xl overflow-hidden border border-white/10">
-                                        <img
-                                            src={selectedService.image}
-                                            alt={selectedService.title}
-                                            className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                                        />
-                                    </div>
-
-                                    {/* Description */}
-                                    <div>
-                                        <h4 className="text-xs tracking-[0.4em] text-gray-400 uppercase font-black mb-4">Présentation du Service</h4>
-                                        <p className="text-gray-200 leading-relaxed text-lg font-light italic border-l-2 border-brand/30 pl-6 mb-10">
-                                            {selectedService.fullDescription || selectedService.description}
-                                        </p>
-
-                                        <button
-                                            onClick={() => {
-                                                setSelectedService(null);
-                                                setTimeout(() => {
-                                                    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                                                }, 300);
-                                            }}
-                                            className="px-10 py-4 bg-brand text-black text-xs tracking-[0.5em] font-black uppercase hover:bg-white transition-all shadow-[0_20px_40px_rgba(223,166,101,0.2)]"
-                                        >
-                                            Contactez-nous
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
-                    </>
-                )}
-            </AnimatePresence>
+            {/* Portal modal rendered here */}
+            {modal}
 
             <style dangerouslySetInnerHTML={{
                 __html: `
