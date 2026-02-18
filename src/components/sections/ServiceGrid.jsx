@@ -88,7 +88,7 @@ const ServiceGrid = ({ services }) => {
                         <div
                             key={service.id}
                             onClick={() => setSelectedService(service)}
-                            className="group relative p-[2px] rounded-[32px] h-[450px] md:h-[500px] w-full md:min-w-[450px] hero-service-unit cursor-pointer transition-transform duration-700 hover:scale-[1.02] overflow-hidden flex-shrink-0 md:snap-center"
+                            className="group relative p-[2px] rounded-[32px] h-[450px] md:h-[500px] w-full md:w-[450px] hero-service-unit cursor-pointer transition-transform duration-700 hover:scale-[1.02] overflow-hidden flex-shrink-0 md:snap-center"
                         >
                             {/* Permanent but subtle Lightning Border Beam */}
                             {/* Extra blur for smoothness */}
