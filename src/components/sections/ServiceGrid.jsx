@@ -31,9 +31,6 @@ const ServiceGrid = ({ services }) => {
                                     <div className="p-3 rounded-2xl bg-black/40 backdrop-blur-md border border-white/10 group-hover:bg-brand group-hover:border-brand transition-all duration-500">
                                         <Icon className="text-brand group-hover:text-black h-6 w-6" weight="light" />
                                     </div>
-                                    <span className="text-[10px] tracking-[0.4em] font-black text-white/30 uppercase">
-                                        Unit 0{index + 1}
-                                    </span>
                                 </div>
                             </div>
 
@@ -48,11 +45,6 @@ const ServiceGrid = ({ services }) => {
                                         {/* Show full content immediately */}
                                         {service.fullDescription || service.description}
                                     </div>
-                                </div>
-
-                                <div className="mt-8 pt-8 flex items-center gap-4">
-                                    <div className="h-[1px] flex-1 bg-white/5 group-hover:bg-brand/30 transition-colors" />
-                                    <span className="text-[9px] tracking-[0.5em] font-black text-white/10 uppercase group-hover:text-brand/50 transition-colors">Elite Detailing</span>
                                 </div>
                             </div>
                         </div>
