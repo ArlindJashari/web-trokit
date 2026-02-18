@@ -11,7 +11,7 @@ const ServiceCard = ({ title, description, Icon }) => {
                     <div className="text-brand">
                         <IconComponent size={32} weight="thin" />
                     </div>
-                    <span className="text-[10px] tracking-[0.3em] font-sans text-gray-400 uppercase">Premium</span>
+                    <span className="text-sm tracking-[0.3em] font-sans text-gray-400 uppercase">Premium</span>
                 </div>
 
                 <div className="space-y-4">
@@ -25,7 +25,7 @@ const ServiceCard = ({ title, description, Icon }) => {
             </div>
 
             <div className="mt-12 flex items-center justify-between">
-                <span className="text-[10px] tracking-[0.2em] uppercase font-bold text-white group-hover:text-brand transition-colors">View Details</span>
+                <span className="text-sm tracking-[0.2em] uppercase font-bold text-white group-hover:text-brand transition-colors">View Details</span>
                 <div className="h-[2px] w-8 bg-white/20 group-hover:bg-brand transition-all group-hover:w-12"></div>
             </div>
         </div>
