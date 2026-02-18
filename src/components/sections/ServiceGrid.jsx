@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Sparkle, Car, Wrench, ShieldCheck, X, PaintBrush, Eyeglasses, Disc, ArrowLeft, ArrowRight } from "@phosphor-icons/react";
+import { Sparkle, Car, Wrench, ShieldCheck, X, PaintBrush, Eyeglasses, Disc } from "@phosphor-icons/react";
 
 const icons = {
     Sparkle, Car, Wrench, ShieldCheck, PaintBrush, Eyeglasses, Disc
@@ -10,24 +10,11 @@ const icons = {
 const ServiceGrid = ({ services }) => {
     const [selectedService, setSelectedService] = useState(null);
     const [mounted, setMounted] = useState(false);
-    const scrollRef = useRef(null);
 
     // Wait for client mount before using portals
     useEffect(() => { setMounted(true); }, []);
 
-    const scroll = (direction) => {
-        if (scrollRef.current) {
-            const { scrollLeft, clientWidth } = scrollRef.current;
-            const scrollTo = direction === 'left'
-                ? scrollLeft - clientWidth / 2
-                : scrollLeft + clientWidth / 2;
-            scrollRef.current.scrollTo({ left: scrollTo, behavior: 'smooth' });
-        }
-    };
-
     // ─── Scroll Lock ─────────────────────────────────────────────────────────
-    // Lock on <html> element — no layout shift, no viewport jump.
-    // Also stop/start Lenis so it doesn't intercept modal scroll events.
     useEffect(() => {
         const lenis = window.lenis;
         const html = document.documentElement;
@@ -58,7 +45,6 @@ const ServiceGrid = ({ services }) => {
         <AnimatePresence>
             {selectedService && (
                 <>
-                    {/* Backdrop */}
                     <motion.div
                         key="backdrop"
                         initial={{ opacity: 0 }}
@@ -70,7 +56,6 @@ const ServiceGrid = ({ services }) => {
                         aria-hidden="true"
                     />
 
-                    {/* Sheet — always anchored to viewport bottom, never affected by scroll position */}
                     <motion.div
                         key="sheet"
                         role="dialog"
@@ -96,9 +81,7 @@ const ServiceGrid = ({ services }) => {
                             boxShadow: '0 -24px 60px rgba(0,0,0,0.6)',
                         }}
                     >
-                        {/* ── Header (never scrolls) ── */}
                         <div style={{ flexShrink: 0, padding: '16px 32px 16px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                            {/* Drag handle */}
                             <div
                                 onClick={() => setSelectedService(null)}
                                 style={{ width: 48, height: 5, background: 'rgba(255,255,255,0.12)', borderRadius: 99, margin: '0 auto 16px', cursor: 'pointer' }}
@@ -106,7 +89,7 @@ const ServiceGrid = ({ services }) => {
                             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 16 }}>
                                 <div>
                                     <span style={{ display: 'block', fontSize: 10, letterSpacing: '0.5em', color: '#D4A76A', fontWeight: 900, textTransform: 'uppercase', marginBottom: 4 }}>
-                                        Vue Détaillée de l'Unité
+                                        Détails du Service
                                     </span>
                                     <h2 style={{ margin: 0, fontSize: 'clamp(1.5rem, 5vw, 2.5rem)', fontFamily: 'Oswald, sans-serif', textTransform: 'uppercase', letterSpacing: '-0.02em', lineHeight: 1, color: '#fff' }}>
                                         {selectedService.title}
@@ -124,8 +107,6 @@ const ServiceGrid = ({ services }) => {
                             </div>
                         </div>
 
-                        {/* ── Scrollable body ── */}
-                        {/* flex:1 + minHeight:0 = the only reliable cross-platform scroll pattern inside flex */}
                         <div
                             data-lenis-prevent
                             style={{
@@ -139,26 +120,21 @@ const ServiceGrid = ({ services }) => {
                             }}
                         >
                             <div style={{ maxWidth: 720, margin: '0 auto' }}>
-                                {/* Image */}
                                 <div style={{ borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(255,255,255,0.08)', marginBottom: 32, aspectRatio: '16/9' }}>
                                     <img
                                         src={selectedService.image}
                                         alt={selectedService.title}
-                                        style={{ width: '100%', height: '100%', objectFit: 'cover', filter: 'grayscale(1)', transition: 'filter 0.6s' }}
-                                        onMouseEnter={e => e.currentTarget.style.filter = 'grayscale(0)'}
-                                        onMouseLeave={e => e.currentTarget.style.filter = 'grayscale(1)'}
+                                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
                                     />
                                 </div>
 
-                                {/* Description */}
                                 <p style={{ fontSize: 10, letterSpacing: '0.4em', color: 'rgba(255,255,255,0.4)', textTransform: 'uppercase', fontWeight: 900, marginBottom: 16 }}>
-                                    Présentation du Service
+                                    Prestation Complète
                                 </p>
-                                <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.85)', lineHeight: 1.7, fontStyle: 'italic', fontWeight: 300, borderLeft: '2px solid rgba(212,167,106,0.35)', paddingLeft: 24, marginBottom: 40 }}>
+                                <div style={{ fontSize: 16, color: 'rgba(255,255,255,0.8)', lineHeight: 1.8, whiteSpace: 'pre-line' }}>
                                     {selectedService.fullDescription || selectedService.description}
-                                </p>
+                                </div>
 
-                                {/* CTA */}
                                 <button
                                     onClick={() => {
                                         setSelectedService(null);
@@ -166,9 +142,15 @@ const ServiceGrid = ({ services }) => {
                                             document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
                                         }, 350);
                                     }}
-                                    style={{ padding: '16px 40px', background: '#D4A76A', color: '#000', fontSize: 10, letterSpacing: '0.5em', fontWeight: 900, textTransform: 'uppercase', border: 'none', cursor: 'pointer', transition: 'background 0.2s', boxShadow: '0 20px 40px rgba(212,167,106,0.2)' }}
-                                    onMouseEnter={e => e.currentTarget.style.background = '#fff'}
-                                    onMouseLeave={e => e.currentTarget.style.background = '#D4A76A'}
+                                    style={{ marginTop: 40, padding: '16px 40px', background: '#D4A76A', color: '#000', fontSize: 10, letterSpacing: '0.5em', fontWeight: 900, textTransform: 'uppercase', border: 'none', cursor: 'pointer', transition: 'all 0.3s', boxShadow: '0 20px 40px rgba(212,167,106,0.1)' }}
+                                    onMouseEnter={e => {
+                                        e.currentTarget.style.background = '#fff';
+                                        e.currentTarget.style.transform = 'translateY(-2px)';
+                                    }}
+                                    onMouseLeave={e => {
+                                        e.currentTarget.style.background = '#D4A76A';
+                                        e.currentTarget.style.transform = 'translateY(0)';
+                                    }}
                                 >
                                     Contactez-nous
                                 </button>
@@ -182,84 +164,65 @@ const ServiceGrid = ({ services }) => {
     );
 
     return (
-        <>
-            <div className="hidden md:flex justify-end gap-4 mb-4">
-                <button
-                    onClick={() => scroll('left')}
-                    className="p-3 rounded-full border border-white/10 hover:bg-white/5 transition-colors group"
-                >
-                    <ArrowLeft size={20} className="text-gray-400 group-hover:text-brand" />
-                </button>
-                <button
-                    onClick={() => scroll('right')}
-                    className="p-3 rounded-full border border-white/10 hover:bg-white/5 transition-colors group"
-                >
-                    <ArrowRight size={20} className="text-gray-400 group-hover:text-brand" />
-                </button>
-            </div>
-
-            <div ref={scrollRef} className="flex flex-col md:flex-row overflow-x-visible md:overflow-x-auto gap-8 pb-12 hide-scrollbar md:snap-x md:snap-mandatory">
+        <section className="py-24 relative overflow-hidden">
+            {/* Modular Bento Grid */}
+            <div className="grid grid-cols-1 md:grid-cols-12 gap-6 auto-rows-[280px]">
                 {services.map((service, index) => {
                     const Icon = icons[service.icon] || Sparkle;
-                    const durations = ['12s', '15s', '13s', '18s'];
-                    const duration = durations[index % durations.length];
-                    const delays = ['0s', '-4s', '-7s', '-2s'];
-                    const delay = delays[index % delays.length];
+
+                    // Different layout spans for bento effect
+                    const spans = [
+                        "md:col-span-8 md:row-span-2 lg:col-span-6", // 0: Big
+                        "md:col-span-4 md:row-span-2 lg:col-span-3", // 1: Vertical
+                        "md:col-span-4 lg:col-span-3",              // 2: Square
+                        "md:col-span-4 lg:col-span-3",              // 3: Square
+                        "md:col-span-8 lg:col-span-6",              // 4: Horizontal
+                        "md:col-span-4 lg:col-span-3",              // 5: Square
+                        "md:col-span-12 lg:col-span-3 lg:row-span-1", // 6: Bottom Bar
+                    ];
+
+                    const spanClass = spans[index] || "md:col-span-4";
+                    const isBig = index === 0 || index === 4;
 
                     return (
                         <div
                             key={service.id}
                             onClick={() => setSelectedService(service)}
-                            className="group relative p-[2px] rounded-[32px] h-[450px] md:h-[500px] w-full md:w-[450px] hero-service-unit cursor-pointer transition-transform duration-700 hover:scale-[1.02] overflow-hidden flex-shrink-0 md:snap-center"
+                            className={`${spanClass} group relative rounded-[32px] overflow-hidden cursor-pointer bg-[#0A0A0A] border border-white/5 hover:border-brand/30 transition-all duration-700`}
                         >
-                            <div
-                                className="absolute inset-[-150%] opacity-50 group-hover:opacity-100 transition-opacity duration-1000 blur-[2px]"
-                                style={{
-                                    background: `conic-gradient(from 0deg, transparent 0deg, transparent 150deg, rgba(255,255,255,0.8) 180deg, transparent 210deg, transparent 360deg)`,
-                                    animation: `border-sweep ${duration} linear infinite`,
-                                    animationDelay: delay
-                                }}
-                            />
-                            <div
-                                className="absolute inset-[-150%] opacity-0 group-hover:opacity-100 transition-opacity duration-700"
-                                style={{
-                                    background: `conic-gradient(from 0deg, transparent 0deg, transparent 170deg, white 180deg, transparent 190deg, transparent 360deg)`,
-                                    animation: `border-sweep ${duration} linear infinite`,
-                                    animationDelay: delay,
-                                    animationDirection: 'reverse'
-                                }}
-                            />
+                            {/* Background Image */}
+                            <div className="absolute inset-0 z-0">
+                                <img
+                                    src={service.image}
+                                    className="w-full h-full object-cover grayscale opacity-20 group-hover:opacity-40 group-hover:scale-110 transition-all duration-1000"
+                                    alt={service.title}
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-[#050505] via-[#050505]/60 to-transparent"></div>
+                            </div>
 
-                            <div className="relative bg-[#050505] rounded-[30px] p-10 h-full flex flex-col justify-between transition-all duration-700 z-10 overflow-hidden">
-                                <div className="absolute inset-0 z-0 opacity-30 group-hover:opacity-50 transition-opacity duration-700">
-                                    <img
-                                        src={service.image}
-                                        className="w-full h-full object-cover grayscale brightness-50 contrast-125 transition-transform duration-[2s] group-hover:scale-110"
-                                        alt={service.title}
-                                    />
-                                    <div className="absolute inset-0 bg-gradient-to-b from-black/0 via-white/5 to-black/0 h-[200%] animate-scanline pointer-events-none"></div>
-                                </div>
-
-                                <div className="relative z-10">
-                                    <div className="flex justify-between items-start">
-                                        <div className="flex flex-col gap-6">
-                                            <span className="text-sm tracking-[0.6em] font-black text-brand uppercase opacity-80">Unit 0{index + 1}</span>
-                                            <Icon className="text-brand h-16 w-16 opacity-80 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110" weight="light" />
-                                        </div>
-                                        <span className="text-sm tracking-[0.4em] font-sans text-white/50 group-hover:text-white uppercase vertical-text transition-colors duration-500">Premium Service Unit</span>
+                            {/* Content */}
+                            <div className="relative z-10 h-full p-8 md:p-10 flex flex-col justify-between">
+                                <div className="flex justify-between items-start">
+                                    <div className={`p-4 rounded-2xl bg-white/5 border border-white/10 group-hover:bg-brand group-hover:border-brand transition-all duration-500`}>
+                                        <Icon className="text-brand group-hover:text-black h-6 w-6 lg:h-8 lg:w-8" weight="light" />
                                     </div>
+                                    <span className="text-[10px] tracking-[0.4em] font-black text-white/20 uppercase vertical-text">
+                                        Elite Service 0{index + 1}
+                                    </span>
                                 </div>
 
-                                <div className="relative z-10">
-                                    <h3 className="text-2xl font-display font-medium uppercase tracking-tight mb-4 group-hover:text-brand transition-colors leading-none">{service.title}</h3>
-                                    <p className="text-sm text-gray-200 leading-relaxed max-w-[280px]">
-                                        {service.description}
+                                <div>
+                                    <h3 className={`font-display font-medium uppercase tracking-tight mb-4 group-hover:text-brand transition-colors leading-none ${isBig ? 'text-3xl lg:text-4xl' : 'text-xl md:text-2xl'}`}>
+                                        {service.title}
+                                    </h3>
+                                    <p className={`text-white/40 group-hover:text-white/70 transition-colors line-clamp-3 text-sm md:text-base leading-relaxed ${isBig ? 'md:max-w-md' : ''}`}>
+                                        {service.description.split('\n')[0]}
                                     </p>
-                                </div>
 
-                                <div className="relative z-10 flex items-center gap-4 mt-8 mb-6">
-                                    <span className="text-[10px] tracking-[0.5em] font-black uppercase text-white/40 group-hover:text-brand transition-colors">Full Spec</span>
-                                    <div className="h-[1px] flex-1 bg-white/5 group-hover:bg-brand/30 transition-colors"></div>
+                                    <div className="flex items-center gap-4 mt-6 opacity-0 group-hover:opacity-100 transition-all duration-500 translate-y-4 group-hover:translate-y-0">
+                                        <span className="text-[10px] tracking-[0.4em] font-black uppercase text-brand">Voir Plus</span>
+                                        <div className="h-[1px] flex-1 bg-brand/30"></div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -267,36 +230,23 @@ const ServiceGrid = ({ services }) => {
                 })}
             </div>
 
-            {/* Portal modal rendered here */}
             {modal}
 
             <style dangerouslySetInnerHTML={{
                 __html: `
-          @keyframes scanline {
-            from { transform: translateY(-50%); }
-            to { transform: translateY(0%); }
-          }
-          .animate-scanline {
-            animation: scanline 8s linear infinite;
-          }
-          @keyframes border-sweep {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
-          }
-          .vertical-text {
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-          }
-          .hide-scrollbar::-webkit-scrollbar {
-            display: none;
-          }
-          .hide-scrollbar {
-            -ms-overflow-style: none;
-            scrollbar-width: none;
-          }
-        `
+                .vertical-text {
+                    writing-mode: vertical-rl;
+                    text-orientation: mixed;
+                }
+                .line-clamp-3 {
+                    display: -webkit-box;
+                    -webkit-line-clamp: 3;
+                    -webkit-box-orient: vertical;
+                    overflow: hidden;
+                }
+                `
             }} />
-        </>
+        </section>
     );
 };
 
