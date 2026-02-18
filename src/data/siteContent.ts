@@ -164,6 +164,14 @@ export const siteData = {
       description: "Recherche de teintes complexes et application soignée en cabine de peinture haute technologie.",
       image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?q=80&w=2574&auto=format&fit=crop",
       span: "md:col-span-1 md:row-span-1"
+    },
+    {
+      id: 5,
+      title: "Optique & Détails",
+      category: "Précision",
+      description: "Rénovation d'optiques et finitions minutieuses pour une clarté absolue.",
+      image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2766&auto=format&fit=crop",
+      span: "md:col-span-1 md:row-span-1"
     }
   ]
 };
