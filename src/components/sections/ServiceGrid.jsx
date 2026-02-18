@@ -61,7 +61,7 @@ const ServiceGrid = ({ services }) => {
 
     return (
         <>
-            <div className="flex justify-end gap-4 mb-4">
+            <div className="hidden md:flex justify-end gap-4 mb-4">
                 <button
                     onClick={() => scroll('left')}
                     className="p-3 rounded-full border border-white/10 hover:bg-white/5 transition-colors group"
@@ -75,7 +75,7 @@ const ServiceGrid = ({ services }) => {
                     <ArrowRight size={20} className="text-gray-400 group-hover:text-brand" />
                 </button>
             </div>
-            <div ref={scrollRef} className="flex overflow-x-auto gap-8 pb-12 hide-scrollbar snap-x snap-mandatory">
+            <div ref={scrollRef} className="flex flex-col md:flex-row overflow-x-visible md:overflow-x-auto gap-8 pb-12 hide-scrollbar md:snap-x md:snap-mandatory">
                 {services.map((service, index) => {
                     const Icon = icons[service.icon] || Sparkle;
                     // Even slower and smoother durations
@@ -88,7 +88,7 @@ const ServiceGrid = ({ services }) => {
                         <div
                             key={service.id}
                             onClick={() => setSelectedService(service)}
-                            className="group relative p-[2px] rounded-[32px] h-[500px] min-w-[320px] md:min-w-[450px] hero-service-unit cursor-pointer transition-transform duration-700 hover:scale-[1.02] overflow-hidden flex-shrink-0 snap-center"
+                            className="group relative p-[2px] rounded-[32px] h-[450px] md:h-[500px] w-full md:min-w-[450px] hero-service-unit cursor-pointer transition-transform duration-700 hover:scale-[1.02] overflow-hidden flex-shrink-0 md:snap-center"
                         >
                             {/* Permanent but subtle Lightning Border Beam */}
                             {/* Extra blur for smoothness */}
