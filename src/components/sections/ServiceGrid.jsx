@@ -58,14 +58,9 @@ const ServiceGrid = ({ services }) => {
                                             {/* Scanline Effect */}
                                             <div className="absolute inset-x-0 top-0 h-1/2 bg-gradient-to-b from-brand/0 via-brand/10 to-brand/0 animate-scan pointer-events-none opacity-0 group-hover:opacity-40" />
 
-                                            {/* Blueprint Coordinates */}
-                                            <div className="absolute top-6 left-6 flex items-center gap-3">
+                                            <div className="absolute top-6 left-6">
                                                 <div className="w-12 h-12 rounded-xl bg-brand flex items-center justify-center text-black">
                                                     <Icon size={24} weight="bold" />
-                                                </div>
-                                                <div className="flex flex-col">
-                                                    <span className="text-[10px] font-black tracking-[0.3em] uppercase text-white">Elite Dossier</span>
-                                                    <span className="text-[10px] font-mono sky-text uppercase text-brand">Ref: TRK-0{index + 1}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -75,37 +70,17 @@ const ServiceGrid = ({ services }) => {
                                 {/* Right Content Area: Technical Data */}
                                 <div className="w-full lg:w-1/2 flex flex-col pt-4">
                                     <header className="mb-10 lg:mb-16">
-                                        <div className="flex items-center gap-4 mb-4">
-                                            <div className="h-[1px] w-12 bg-brand" />
-                                            <span className="text-brand text-xs font-black tracking-[0.5em] uppercase">Spécifications Techniques</span>
-                                        </div>
                                         <h3 className="text-5xl md:text-6xl lg:text-8xl font-display font-black uppercase tracking-tighter leading-[0.85] text-white">
                                             {service.title}
                                         </h3>
                                     </header>
 
-                                    <div className="grid grid-cols-1 gap-12">
+                                    <div className="grid grid-cols-1">
                                         {/* Precise Formatting for the 100% Content */}
                                         <div className="prose prose-invert max-w-none">
                                             <p className="text-white/80 text-lg md:text-xl leading-relaxed font-sans whitespace-pre-line border-l-2 border-brand/20 pl-8 lg:pl-12 py-4">
                                                 {service.fullDescription || service.description}
                                             </p>
-                                        </div>
-
-                                        {/* Technical Features Bar */}
-                                        <div className="flex flex-wrap gap-8 pt-12 border-t border-white/10 uppercase">
-                                            <div className="flex flex-col gap-2">
-                                                <span className="text-[9px] text-white/40 tracking-widest font-black">Qualité</span>
-                                                <span className="text-xs text-white tracking-widest">Excellence Elite</span>
-                                            </div>
-                                            <div className="flex flex-col gap-2">
-                                                <span className="text-[9px] text-white/40 tracking-widest font-black">Technologie</span>
-                                                <span className="text-xs text-white tracking-widest">Sikkens Ultra</span>
-                                            </div>
-                                            <div className="flex flex-col gap-2">
-                                                <span className="text-[9px] text-white/40 tracking-widest font-black">Localité</span>
-                                                <span className="text-xs text-white tracking-widest">Valais, Suisse</span>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
