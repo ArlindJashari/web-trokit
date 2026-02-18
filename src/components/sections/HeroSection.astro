@@ -1,205 +1,274 @@
 ---
 import { siteData } from "../../data/siteContent";
-import { Image } from "astro:assets";
-import heroPorsche from "../../assets/porsche-hero.jpg";
+import { List, X, Phone } from "@phosphor-icons/react";
 import ServiceGrid from "./ServiceGrid.jsx";
 ---
 
 <section
-  class="bg-black text-white pt-20 pb-12 overflow-hidden hero-section"
+  class="bg-black text-white pt-12 md:pt-20 pb-12 overflow-hidden hero-section"
   id="hero"
 >
   <div class="max-w-[1440px] mx-auto px-6">
-    {/* Brand Identity Header */}
-    {/* Brand Identity Header */}
-    <div
-      class="flex flex-col md:grid md:grid-cols-3 gap-6 md:gap-8 items-center mb-8 md:mb-12 py-4 md:py-8 border-b border-white/5 md:border-none"
+    {/* Brand Identity Header: Redesigned for Mobile UX */}
+    <header
+      class="flex md:grid md:grid-cols-3 items-center justify-between mb-8 md:mb-12 py-4 md:py-8 sticky top-0 md:relative z-[60] bg-black/50 backdrop-blur-lg md:bg-transparent"
     >
-      {/* Phone: Hidden on small mobile, shown nicely on tablet/desktop */}
+      {
+        /* Phone: Hidden on small mobile, elegant icon on mobile, text on desktop */
+      }
       <div
-        class="hidden sm:flex flex-col gap-1 items-center md:items-start order-2 md:order-1 reveal-hero-contact"
+        class="hidden sm:flex md:flex flex-col gap-1 items-start reveal-hero-contact order-2 md:order-1"
       >
         <span
-          class="text-[9px] md:text-[10px] tracking-[0.4em] font-sans text-gray-500 uppercase"
+          class="text-[9px] md:text-[10px] tracking-[0.4em] font-sans text-gray-500 uppercase hidden md:block"
           >Contactez-nous</span
         >
         <a
           href={`tel:${siteData.brand.contact.phone[0]}`}
-          class="text-lg md:text-xl font-display tracking-tight hover:text-brand transition-colors"
+          class="text-[10px] md:text-xl font-display tracking-tight hover:text-brand transition-colors flex items-center gap-2"
         >
-          {siteData.brand.contact.phone[0]}
+          <Phone size={14} className="md:hidden text-brand" />
+          <span class="hidden md:inline">{siteData.brand.contact.phone[0]}</span
+          >
         </a>
       </div>
 
-      {/* Brand Logo: Always centered and prominent */}
-      <div class="flex justify-center order-1 md:order-2 reveal-hero-logo">
+      {/* Brand Logo: Prominent and centered */}
+      <div
+        class="flex justify-start md:justify-center reveal-hero-logo order-1 md:order-2"
+      >
         <img
           src="/ELITE-LOGO-WHITE.svg"
           alt={siteData.brand.name}
-          class="h-16 sm:h-20 md:h-28 lg:h-36 w-auto object-contain"
+          class="h-10 sm:h-12 md:h-28 lg:h-36 w-auto object-contain"
         />
       </div>
 
-      {/* Modern Navigation & Tagline */}
-      <div
-        class="flex flex-col gap-4 md:gap-6 items-center md:items-end order-3 reveal-hero-nav w-full md:w-auto"
-      >
-        <nav
-          class="flex gap-6 md:gap-8 items-center justify-center md:justify-end w-full"
+      {/* Right side: Desktop Nav or Mobile Hamburger */}
+      <div class="flex items-center justify-end order-3 reveal-hero-nav">
+        {/* Desktop Navigation (MD+) */}
+        <nav class="hidden md:flex flex-col gap-6 items-end">
+          <div class="flex gap-8 items-center">
+            <a
+              href="#services"
+              class="text-[10px] tracking-[0.4em] uppercase font-black text-gray-400 hover:text-brand transition-all"
+              >Services</a
+            >
+            <div class="w-1 h-1 rounded-full bg-white/20"></div>
+            <a
+              href="#projects"
+              class="text-[10px] tracking-[0.4em] uppercase font-black text-gray-400 hover:text-brand transition-all"
+              >Galerie</a
+            >
+            <div class="w-1 h-1 rounded-full bg-white/20"></div>
+            <a
+              href="#contact"
+              class="text-[10px] tracking-[0.4em] uppercase font-black text-gray-400 hover:text-brand transition-all"
+              >Contact</a
+            >
+          </div>
+          <div
+            class="flex items-center gap-6 pt-6 border-t border-white/10 w-full justify-end"
+          >
+            <div class="flex flex-col items-end">
+              <span
+                class="text-[10px] tracking-[0.5em] text-brand uppercase font-black"
+                >LE STANDARD VALAISAN</span
+              >
+              <span class="text-[9px] text-gray-500 uppercase tracking-widest"
+                >Conthey, Suisse</span
+              >
+            </div>
+          </div>
+        </nav>
+
+        {/* Mobile Menu Trigger */}
+        <button
+          id="menu-trigger"
+          class="md:hidden p-2 text-white hover:text-brand transition-colors"
+          aria-label="Menu"
         >
+          <List size={32} weight="light" />
+        </button>
+      </div>
+    </header>
+
+    {/* Mobile Menu Overlay */}
+    <div
+      id="mobile-menu"
+      class="fixed inset-0 bg-[#050505] z-[100] translate-x-full transition-transform duration-500 md:hidden"
+    >
+      <div class="flex flex-col h-full p-8">
+        <div class="flex justify-between items-center mb-16">
+          <img src="/ELITE-LOGO-WHITE.svg" alt="Elite" class="h-8 w-auto" />
+          <button
+            id="menu-close"
+            class="p-2 text-white hover:rotate-90 transition-transform"
+          >
+            <X size={32} weight="light" />
+          </button>
+        </div>
+
+        <nav class="flex flex-col gap-8">
           <a
             href="#services"
-            class="text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] uppercase font-black text-gray-400 hover:text-brand transition-all"
+            class="mobile-nav-link text-4xl font-display uppercase tracking-tighter"
             >Services</a
           >
-          <div class="w-1 h-1 rounded-full bg-white/10 hidden xs:block"></div>
           <a
             href="#projects"
-            class="text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] uppercase font-black text-gray-400 hover:text-brand transition-all"
+            class="mobile-nav-link text-4xl font-display uppercase tracking-tighter"
             >Galerie</a
           >
-          <div class="w-1 h-1 rounded-full bg-white/10 hidden xs:block"></div>
           <a
             href="#contact"
-            class="text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] uppercase font-black text-gray-400 hover:text-brand transition-all"
+            class="mobile-nav-link text-4xl font-display uppercase tracking-tighter"
             >Contact</a
           >
         </nav>
 
-        <div
-          class="hidden md:flex items-center gap-6 pt-6 border-t border-white/10 w-full justify-end"
-        >
-          <div class="flex flex-col items-end">
-            <span
-              class="text-[10px] tracking-[0.5em] text-brand uppercase font-black"
-              >LE STANDARD VALAISAN</span
+        <div class="mt-auto pt-12 border-t border-white/10 space-y-6">
+          <div class="flex flex-col gap-1">
+            <span class="text-[10px] tracking-[0.4em] text-gray-500 uppercase"
+              >Appelez-nous</span
             >
-            <span class="text-[9px] text-gray-500 uppercase tracking-widest"
-              >Conthey, Suisse</span
+            <a
+              href={`tel:${siteData.brand.contact.phone[0]}`}
+              class="text-xl font-display text-brand"
+              >{siteData.brand.contact.phone[0]}</a
             >
+          </div>
+          <div class="flex flex-col gap-1">
+            <span class="text-[10px] tracking-[0.4em] text-gray-500 uppercase"
+              >Suivez-nous</span
+            >
+            <div class="flex gap-6 mt-2">
+              <a
+                href={siteData.brand.socials.instagram}
+                class="text-white hover:text-brand opacity-60">Instagram</a
+              >
+              <a href="#" class="text-white hover:text-brand opacity-60"
+                >Facebook</a
+              >
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    {/* Featured Visual Frame */}
+    {/* Featured Visual Frame: Immersion Focus */}
     <div
-      class="relative w-full aspect-[4/5] sm:aspect-[16/9] md:aspect-[16/7] overflow-hidden group bg-black rounded-[2rem] md:rounded-none reveal-hero-image shadow-2xl"
+      class="relative w-full aspect-[3/4] sm:aspect-[4/3] md:aspect-[16/7] overflow-hidden group bg-black rounded-[2.5rem] md:rounded-none reveal-hero-image shadow-[0_40px_100px_rgba(0,0,0,0.8)] border border-white/5 md:border-none"
     >
       <video
         autoplay
         muted
         loop
         playsinline
-        class="w-full h-full object-cover transition-all duration-[3s] group-hover:scale-110 md:contrast-125 brightness-75 md:brightness-100"
+        class="w-full h-full object-cover transition-all duration-[4s] group-hover:scale-105 contrast-[1.15] brightness-75 md:brightness-100"
       >
         <source src="/3_ELITE_WEBVIDEO.mp4" type="video/mp4" />
       </video>
 
       {/* Cinematic Overlays */}
       <div
-        class="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent opacity-90 md:opacity-80"
+        class="absolute inset-0 bg-gradient-to-t from-[#050505] via-transparent to-transparent opacity-90 md:opacity-70"
       >
       </div>
 
-      {/* Decorative Border Glow for Mobile */}
+      {/* Hero Content Overlay: centered for mobile, bottom-left for desktop */}
       <div
-        class="absolute inset-0 rounded-[2rem] md:rounded-none border border-white/10 pointer-events-none"
+        class="absolute inset-0 z-20 flex flex-col justify-center items-center md:items-start md:justify-end md:p-16 p-6 text-center md:text-left"
       >
-      </div>
-
-      {/* Centered Scroll Indicator - Responsive position */}
-      <div
-        class="absolute bottom-6 md:bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-2 md:gap-4"
-      >
-        <span
-          class="text-[8px] md:text-[10px] tracking-[0.5em] md:tracking-[0.6em] uppercase text-white/60 font-medium"
-          >EXPLORER</span
-        >
-        <div
-          class="w-[1px] h-8 md:h-12 bg-gradient-to-b from-brand to-transparent animate-pulse"
-        >
-        </div>
-      </div>
-
-      {/* Hero Content Overlay: Creative centering on mobile */}
-      <div
-        class="absolute inset-0 z-20 flex flex-col justify-center items-center md:items-start md:justify-end md:p-12 text-center md:text-left"
-      >
-        <div class="space-y-4 md:space-y-6 px-6">
+        <div class="space-y-4 md:space-y-8 max-w-4xl">
           <div class="flex items-center justify-center md:justify-start gap-4">
-            <div class="h-[1px] w-8 md:w-12 bg-brand"></div>
+            <div class="h-[1px] w-8 md:w-16 bg-brand"></div>
             <span
-              class="text-[10px] md:text-xs tracking-[0.5em] md:tracking-[0.6em] text-brand uppercase font-black"
-              >EXCELLENCE AUTOMOBILE</span
+              class="text-[10px] md:text-sm tracking-[0.6em] text-brand uppercase font-black"
+              >Excellence Technique</span
             >
-            <div class="h-[1px] w-8 md:w-12 bg-brand md:hidden"></div>
           </div>
           <h1
-            class="text-4xl xs:text-5xl sm:text-6xl md:text-8xl font-display text-white uppercase tracking-tighter leading-[0.85] md:leading-[0.8] reveal-text drop-shadow-2xl"
+            class="text-[14vw] sm:text-[10vw] md:text-8xl lg:text-9xl font-display text-white uppercase tracking-tighter leading-[0.85] md:leading-[0.8] reveal-text"
           >
-            RESTAURER <br class="hidden xs:block" />
+            RESTAURER <br />
             <span class="text-brand">L'EXCELLENCE</span>
           </h1>
           <p
-            class="text-[10px] md:hidden tracking-[0.2em] text-gray-400 uppercase font-light mt-4"
+            class="md:hidden text-[10px] tracking-[0.2em] text-white/40 uppercase font-light mt-6"
           >
-            Atelier de Carrosserie & Peinture Premium
+            Expertise automobile & Restauration de Prestige depuis 2018
           </p>
+        </div>
+      </div>
+
+      {/* Centered Scroll Indicator */}
+      <div
+        class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex flex-col items-center gap-4 hidden md:flex"
+      >
+        <span
+          class="text-[10px] tracking-[0.6em] uppercase text-white/60 font-medium"
+          >DÉFILER</span
+        >
+        <div class="w-[1px] h-12 bg-gradient-to-b from-brand to-transparent">
         </div>
       </div>
     </div>
 
-    <div class="py-12">
+    <div class="py-16 md:py-24 animate-reveal-grid">
       <ServiceGrid services={siteData.services} client:load />
     </div>
   </div>
 </section>
 
 <style>
-  @keyframes scroll-dot {
-    0% {
-      transform: translateY(0);
-      opacity: 0;
-    }
-    30% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(12px);
-      opacity: 0;
-    }
+  .mobile-nav-link {
+    transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   }
-  .animate-scroll-dot {
-    animation: scroll-dot 2s infinite cubic-bezier(0.19, 1, 0.22, 1);
-  }
-  .vertical-text {
-    writing-mode: vertical-rl;
-    text-orientation: mixed;
+  .mobile-nav-link:hover {
+    color: #d4a76a;
+    padding-left: 1rem;
   }
 </style>
 
 <script>
   import { gsap } from "gsap";
 
+  // Timeline for initial page load
   const tl = gsap.timeline({ defaults: { ease: "power4.out", duration: 1.2 } });
 
-  tl.from(".reveal-hero-top", { opacity: 0, y: -20 })
-    .from(
-      ".reveal-hero-logo",
-      { opacity: 0, scale: 1.1, y: 30, duration: 1.5 },
-      "-=0.8"
-    )
+  tl.from(".reveal-hero-logo", { opacity: 0, scale: 1.1, y: 30, duration: 1.5 })
     .from(".reveal-hero-contact", { opacity: 0, x: -30 }, "-=1")
     .from(".reveal-hero-nav", { opacity: 0, x: 30 }, "-=1.2")
     .from(
       ".reveal-hero-image",
       { opacity: 0, scale: 0.95, y: 50, duration: 1.5 },
-      "-=1"
+      "-=1.2"
     )
-    .to(
-      ".hero-service-unit",
-      { opacity: 1, y: 0, duration: 1, stagger: 0.15 },
-      "-=1"
-    );
+    .from(
+      ".reveal-text",
+      { opacity: 0, y: 80, stagger: 0.1, duration: 1.5 },
+      "-=0.8"
+    )
+    .from(".animate-reveal-grid", { opacity: 0, y: 100, duration: 1.5 }, "-=1");
+
+  // Mobile Menu Logic
+  const menuTrigger = document.getElementById("menu-trigger");
+  const menuClose = document.getElementById("menu-close");
+  const mobileMenu = document.getElementById("mobile-menu");
+  const navLinks = document.querySelectorAll(".mobile-nav-link");
+
+  const openMenu = () => {
+    mobileMenu?.classList.remove("translate-x-full");
+    document.body.style.overflow = "hidden";
+  };
+
+  const closeMenu = () => {
+    mobileMenu?.classList.add("translate-x-full");
+    document.body.style.overflow = "unset";
+  };
+
+  menuTrigger?.addEventListener("click", openMenu);
+  menuClose?.addEventListener("click", closeMenu);
+  navLinks.forEach((link) => link.addEventListener("click", closeMenu));
 </script>
