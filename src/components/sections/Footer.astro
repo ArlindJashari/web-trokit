@@ -188,28 +188,18 @@ import {
         </form>
       </div>
     </div>
+  </div>
 
-    {/* Big Brand Watermark: Responsive positioning */}
-    <div
-      class="relative pt-16 md:pt-24 mt-16 md:mt-24 border-t border-white/10"
-    >
+  {/* Simplified Bottom Bar: No logo, blue background, reduced height */}
+  <div class="bg-[#274C70] mt-16 md:mt-24 py-6 md:py-8">
+    <div class="max-w-[1440px] mx-auto px-6">
       <div
-        class="absolute inset-x-0 -top-12 md:-top-24 flex justify-center opacity-[0.02] md:opacity-[0.03] select-none pointer-events-none overflow-hidden"
+        class="flex flex-col md:flex-row justify-between w-full items-center gap-6 text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] text-white/50 uppercase font-bold"
       >
-        <img
-          src="/ELITE-LOGO-WHITE.svg"
-          alt="Elite Watermark"
-          class="w-[80vw] md:w-[60vw] h-auto grayscale"
-        />
-      </div>
-
-      <div
-        class="flex flex-col md:flex-row justify-between w-full items-center gap-8 md:gap-12 text-[9px] md:text-[10px] tracking-[0.3em] md:tracking-[0.4em] text-gray-600 uppercase font-bold relative z-10"
-      >
-        <span
-          class="order-3 md:order-1 text-center md:text-left opacity-60 md:opacity-100"
-          >&copy; {new Date().getFullYear()} {siteData.brand.name}</span
-        >
+        <span class="order-3 md:order-1 text-center md:text-left">
+          &copy; {new Date().getFullYear()}
+          {siteData.brand.name}
+        </span>
 
         <nav
           class="flex flex-wrap justify-center gap-6 sm:gap-12 order-1 md:order-2"
