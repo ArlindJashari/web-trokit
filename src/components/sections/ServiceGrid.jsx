@@ -52,29 +52,34 @@ const ServiceGrid = ({ services }) => {
     };
 
     useEffect(() => {
+        const lenis = (window).lenis;
+
         if (selectedService) {
-            // Save current scroll position
+            // Stop Lenis smooth scroll so it doesn't intercept modal scroll
+            lenis?.stop();
+            // Lock body scroll
             const scrollY = window.scrollY;
-            // Lock body scroll (works with and without Lenis)
+            document.body.dataset.scrollY = String(scrollY);
             document.body.style.position = 'fixed';
             document.body.style.top = `-${scrollY}px`;
             document.body.style.left = '0';
             document.body.style.right = '0';
             document.body.style.overflow = 'hidden';
         } else {
-            // Restore scroll position
-            const scrollY = document.body.style.top;
+            // Restore Lenis
+            lenis?.start();
+            // Restore body scroll
+            const scrollY = document.body.dataset.scrollY || '0';
             document.body.style.position = '';
             document.body.style.top = '';
             document.body.style.left = '';
             document.body.style.right = '';
             document.body.style.overflow = '';
-            if (scrollY) {
-                window.scrollTo(0, parseInt(scrollY || '0') * -1);
-            }
+            window.scrollTo(0, parseInt(scrollY));
         }
+
         return () => {
-            // Cleanup on unmount
+            lenis?.start();
             document.body.style.position = '';
             document.body.style.top = '';
             document.body.style.left = '';
@@ -233,10 +238,11 @@ const ServiceGrid = ({ services }) => {
                                 </div>
                             </div>
 
-                            {/* Scrollable content area */}
+                            {/* Scrollable content area - data-lenis-prevent stops Lenis intercepting scroll */}
                             <div
+                                data-lenis-prevent
                                 className="overflow-y-auto h-[calc(100%-110px)] px-8 pb-16 pt-8"
-                                style={{ WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain' }}
+                                style={{ WebkitOverflowScrolling: 'touch', overscrollBehavior: 'contain', touchAction: 'pan-y' }}
                             >
                                 <div className="max-w-3xl mx-auto">
                                     <div className="space-y-10">
