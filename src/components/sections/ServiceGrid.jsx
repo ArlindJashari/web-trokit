@@ -127,10 +127,10 @@ const ServiceGrid = ({ services }) => {
                                 <div className="relative flex flex-col gap-8 z-10">
                                     <div className="flex justify-between items-start mb-4">
                                         <div className="flex flex-col gap-6">
-                                            <span className="text-[10px] tracking-[0.6em] font-black text-brand uppercase opacity-80">Unit 0{index + 1}</span>
+                                            <span className="text-xs tracking-[0.6em] font-black text-brand uppercase opacity-80">Unit 0{index + 1}</span>
                                             <Icon className="text-brand h-16 w-16 opacity-80 group-hover:opacity-100 transition-all duration-500 group-hover:scale-110" weight="light" />
                                         </div>
-                                        <span className="text-[10px] tracking-[0.4em] font-sans text-white/50 group-hover:text-white uppercase vertical-text transition-colors duration-500">Premium Service Unit</span>
+                                        <span className="text-xs tracking-[0.4em] font-sans text-white/50 group-hover:text-white uppercase vertical-text transition-colors duration-500">Premium Service Unit</span>
                                     </div>
 
                                     <div>
@@ -142,7 +142,7 @@ const ServiceGrid = ({ services }) => {
                                 </div>
 
                                 <div className="mt-12 flex items-center gap-4">
-                                    <span className="text-[10px] tracking-[0.4em] font-black uppercase text-white/60 group-hover:text-brand transition-colors">Full Spec</span>
+                                    <span className="text-xs tracking-[0.4em] font-black uppercase text-white/60 group-hover:text-brand transition-colors">Full Spec</span>
                                     <div className="h-[1px] flex-1 bg-white/5 group-hover:bg-brand/30 transition-colors"></div>
                                 </div>
                             </div>
