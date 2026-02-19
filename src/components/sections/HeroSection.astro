@@ -168,40 +168,6 @@ import ServiceGrid from "./ServiceGrid.jsx";
           ))
         }
       </nav>
-
-      <div
-        class="mt-auto grid grid-cols-1 md:grid-cols-2 gap-12 pt-12 border-t border-white/5"
-      >
-        <div class="space-y-4">
-          <span
-            class="text-[10px] tracking-[0.5em] text-white/30 uppercase font-black"
-            >Localisation</span
-          >
-          <p class="text-sm tracking-widest text-white/80">
-            {siteData.brand.contact.address}
-          </p>
-        </div>
-        <div class="space-y-4">
-          <span
-            class="text-[10px] tracking-[0.5em] text-white/30 uppercase font-black"
-            >Social</span
-          >
-          <div class="flex gap-8">
-            <a
-              href={siteData.brand.socials.instagram}
-              class="text-white hover:text-brand transition-colors"
-            >
-              <InstagramLogo size={24} weight="light" />
-            </a>
-            <a
-              href={siteData.brand.socials.facebook}
-              class="text-white hover:text-brand transition-colors"
-            >
-              <FacebookLogo size={24} weight="light" />
-            </a>
-          </div>
-        </div>
-      </div>
     </div>
   </div>
 
