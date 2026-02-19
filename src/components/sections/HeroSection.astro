@@ -64,7 +64,7 @@ import ServiceGrid from "./ServiceGrid.jsx";
 
         <button
           id="menu-trigger"
-          class="p-2 text-white hover:text-brand transition-colors flex items-center gap-3 group"
+          class="lg:hidden p-2 text-white hover:text-brand transition-colors flex items-center gap-3 group"
         >
           <span
             class="hidden md:block text-[10px] tracking-[0.4em] uppercase font-black opacity-60 group-hover:opacity-100"
@@ -206,7 +206,7 @@ import ServiceGrid from "./ServiceGrid.jsx";
   </div>
 
   {/* Services Section following the Hero */}
-  <div id="services-grid" class="bg-black py-12 md:py-24 relative z-10">
+  <div id="services" class="bg-black py-12 md:py-24 relative z-10">
     <div class="max-w-[1440px] mx-auto px-6">
       <ServiceGrid services={siteData.services} client:load />
     </div>
