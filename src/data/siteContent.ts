@@ -11,8 +11,8 @@ export const siteData = {
       googleMapLink: "https://maps.google.com/?q=Route+de+l’industrie+1,+1964+Conthey",
     },
     socials: {
-      instagram: "https://www.instagram.com/carrosserie_elite/",
-      facebook: "#",
+      instagram: "https://www.instagram.com/carrosserie_elite",
+      facebook: "https://www.facebook.com/people/Carrosserie-Elite/100059332610229/",
     },
     openingHours: [
       { day: "Lundi - Jeudi", time: "7:30-12:00 / 13:30-18:00" },
