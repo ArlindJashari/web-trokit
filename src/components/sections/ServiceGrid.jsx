@@ -8,7 +8,7 @@ const icons = {
 
 const ServiceGrid = ({ services }) => {
     return (
-        <section className="py-24 relative bg-black overflow-hidden">
+        <section className="py-12 md:py-24 relative bg-black overflow-hidden">
             {/* Background Atmosphere */}
             <div className="absolute inset-0 opacity-20 pointer-events-none">
                 <div className="absolute top-0 left-1/4 w-[1px] h-full bg-white/5" />
@@ -20,7 +20,7 @@ const ServiceGrid = ({ services }) => {
             </div>
 
             <div className="max-w-[1440px] mx-auto px-6 relative z-10">
-                <div className="flex flex-col gap-32">
+                <div className="flex flex-col gap-16 md:gap-32">
                     {services.map((service, index) => {
                         const Icon = icons[service.icon] || Sparkle;
                         const isEven = index % 2 === 0;
