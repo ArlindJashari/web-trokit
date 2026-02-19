@@ -5,7 +5,7 @@ export const siteData = {
     subSlogan: "EXCELLENCE TECHNIQUE & PASSION",
     description: "Fondée en 2018, Carrosserie Elite offre des réparations de haute précision pour toutes marques de véhicules. Nous allions savoir-faire artisanal et technologies de pointe pour garantir un résultat irréprochable.",
     contact: {
-      address: "Route de l’industrie 1, 1964 Conthey, Suisse",
+      address: "Route de l'industrie 1, 1964 - Conthey - Valais - Suisse",
       phone: ["+41 27 346 07 01", "+41 79 366 29 95"],
       email: "info@carrosserie-elite.ch",
       googleMapLink: "https://maps.google.com/?q=Route+de+l’industrie+1,+1964+Conthey",
@@ -15,9 +15,9 @@ export const siteData = {
       facebook: "#",
     },
     openingHours: [
-      { day: "Lun - Jeu", time: "07:30 - 12:00 / 13:30 - 18:00" },
-      { day: "Ven", time: "07:30 - 12:00 / 13:30 - 17:00" },
-      { day: "Sam - Dim", time: "Fermé" },
+      { day: "Lundi - Jeudi", time: "7:30-12:00 / 13:30-18:00" },
+      { day: "Vendredi", time: "7:30-12:00 / 13:30-17:00" },
+      { day: "Samedi/Dimanche", time: "Fermé" },
     ],
   },
   stats: [
