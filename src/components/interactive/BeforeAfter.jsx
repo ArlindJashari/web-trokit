@@ -47,7 +47,7 @@ const BeforeAfter = () => {
     return (
         <section className="bg-black py-24 border-t border-white/5">
             <div className="mx-auto max-w-7xl px-6 text-center lg:px-8">
-                <h2 className="mb-12 text-3xl font-bold font-display uppercase tracking-widest text-white">Transformation Gallery</h2>
+                <h2 className="mb-12 text-3xl font-bold font-display uppercase tracking-widest text-white">Galerie de Transformation</h2>
 
                 <div
                     ref={containerRef}
@@ -64,7 +64,7 @@ const BeforeAfter = () => {
                             className="h-full w-full object-cover"
                             draggable="false"
                         />
-                        <div className="absolute top-4 right-4 rounded bg-black/50 px-3 py-1 text-xs font-bold uppercase tracking-widest text-brand backdrop-blur-md">After</div>
+                        <div className="absolute top-4 right-4 rounded bg-black/50 px-3 py-1 text-xs font-bold uppercase tracking-widest text-brand backdrop-blur-md">Après</div>
                     </div>
 
                     {/* Before Image (Foreground - Clipped) */}
@@ -78,7 +78,7 @@ const BeforeAfter = () => {
                             className="h-full w-full object-cover grayscale brightness-75"
                             draggable="false"
                         />
-                        <div className="absolute top-4 left-4 rounded bg-black/50 px-3 py-1 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-md">Before</div>
+                        <div className="absolute top-4 left-4 rounded bg-black/50 px-3 py-1 text-xs font-bold uppercase tracking-widest text-white backdrop-blur-md">Avant</div>
                     </div>
 
                     {/* Slider Handle */}

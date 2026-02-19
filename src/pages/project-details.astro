@@ -30,9 +30,9 @@ const project = siteData.projects[0]; // Featured Project
         >
           <ArrowLeft
             weight="bold"
-            class="transition-transform group-hover:-translate-x-2"
+            className="transition-transform group-hover:-translate-x-2"
           />
-          Back to Projects
+          Retour aux Projets
         </a>
         <div class="flex items-center gap-6">
           <ShareNetwork
@@ -50,7 +50,7 @@ const project = siteData.projects[0]; // Featured Project
         <div>
           <span
             class="text-xs tracking-[0.6em] text-brand font-black uppercase mb-6 block"
-            >Project Case Study</span
+            >Étude de Cas Projet</span
           >
           <h1
             class="text-6xl md:text-8xl lg:text-[120px] font-display font-medium uppercase tracking-tighter leading-[0.8] mb-8"
@@ -66,8 +66,8 @@ const project = siteData.projects[0]; // Featured Project
           <p
             class="text-gray-400 text-lg md:text-xl font-light leading-relaxed max-w-md uppercase tracking-widest italic"
           >
-            "A full technical restoration and protective ceramic application for
-            an automotive icon."
+            "Une restauration technique complète et une application céramique
+            protectrice pour une icône de l'automobile."
           </p>
         </div>
       </div>
@@ -93,19 +93,19 @@ const project = siteData.projects[0]; // Featured Project
           <div class="flex flex-col gap-2">
             <span
               class="text-[10px] tracking-[0.4em] text-brand uppercase font-black"
-              >Duration</span
+              >Durée</span
             >
             <span class="text-xl font-display uppercase tracking-tight"
-              >48 Hours</span
+              >48 Heures</span
             >
           </div>
           <div class="flex flex-col gap-2">
             <span
               class="text-[10px] tracking-[0.4em] text-brand uppercase font-black"
-              >Complexity</span
+              >Complexité</span
             >
             <span class="text-xl font-display uppercase tracking-tight"
-              >Exotic Grade</span
+              >Grade Exotique</span
             >
           </div>
           <div class="flex flex-col gap-2">
@@ -120,10 +120,10 @@ const project = siteData.projects[0]; // Featured Project
           <div class="flex flex-col gap-2">
             <span
               class="text-[10px] tracking-[0.4em] text-brand uppercase font-black"
-              >Status</span
+              >Statut</span
             >
             <span class="text-xl font-display uppercase tracking-tight"
-              >Master Verified</span
+              >Vérifié par Expert</span
             >
           </div>
         </div>
@@ -137,22 +137,23 @@ const project = siteData.projects[0]; // Featured Project
             <h2
               class="text-3xl font-display uppercase tracking-tight flex items-center gap-6"
             >
-              The Mission
+              La Mission
               <div class="h-[1px] flex-1 bg-white/10"></div>
             </h2>
             <div
               class="text-gray-400 font-sans leading-relaxed text-lg space-y-6"
             >
               <p>
-                The {project.title} presented a unique challenge in paint restoration.
-                Upon arrival, the factory finish showed significant swirling and
-                environmental contamination that masked the deep metallic radiance
-                of the bodywork.
+                La {project.title} a présenté un défi unique en matière de restauration
+                de peinture. À son arrivée, la finition d'usine présentait des tourbillons
+                importants et une contamination environnementale qui masquait l'éclat
+                métallique profond de la carrosserie.
               </p>
               <p>
-                Our team executed a multi-stage decontamination process followed
-                by a surgical 3-stage paint correction to remove 99% of surface
-                defects, achieving the legendary "Elite Mirror Finish."
+                Notre équipe a exécuté un processus de décontamination en
+                plusieurs étapes, suivi d'une correction de peinture
+                chirurgicale en 3 étapes pour éliminer 99 % des défauts de
+                surface, atteignant ainsi la légendaire "Elite Mirror Finish".
               </p>
             </div>
           </div>
@@ -161,25 +162,25 @@ const project = siteData.projects[0]; // Featured Project
             <div class="p-8 bg-neutral-900/50 border border-white/5 space-y-4">
               <Wrench className="text-brand" size={32} weight="light" />
               <h4 class="text-lg font-display uppercase tracking-widest">
-                Correction Phase
+                Phase de Correction
               </h4>
               <p
                 class="text-xs text-gray-500 uppercase tracking-widest leading-relaxed"
               >
-                Rotary and dual-action stage polishing to level the clear coat
-                and remove factory imperfections.
+                Polissage rotatif et à double action pour niveler le vernis et
+                éliminer les imperfections d'usine.
               </p>
             </div>
             <div class="p-8 bg-neutral-900/50 border border-white/5 space-y-4">
               <ShieldCheck className="text-brand" size={32} weight="light" />
               <h4 class="text-lg font-display uppercase tracking-widest">
-                Protection Matrix
+                Matrice de Protection
               </h4>
               <p
                 class="text-xs text-gray-500 uppercase tracking-widest leading-relaxed"
               >
-                Application of 9H high-solids nano-coating for 5-year
-                hydrophobic shield and chemical resistance.
+                Application d'un nano-revêtement 9H à haute teneur en solides
+                pour un bouclier hydrophobe de 5 ans et une résistance chimique.
               </p>
             </div>
           </div>
@@ -190,22 +191,31 @@ const project = siteData.projects[0]; // Featured Project
           class="lg:col-span-5 space-y-12 bg-neutral-900 p-12 border-t border-brand/40"
         >
           <h3 class="text-2xl font-display uppercase tracking-[0.2em]">
-            Full Spec Details
+            Détails Techniques Complets
           </h3>
           <ul class="space-y-8">
             {
               [
                 {
-                  label: "Surface Preparation",
-                  value: "Chemical & Mechanical Decon",
+                  label: "Préparation de Surface",
+                  value: "Décon. Chimique & Mécanique",
                 },
                 {
-                  label: "Correction Fluid",
-                  value: "Diminishing Abrasive Tech",
+                  label: "Fluide de Correction",
+                  value: "Techno Abrasive Dégressive",
                 },
-                { label: "Coating System", value: "Quartz-Base Sio2 Liquid" },
-                { label: "Wheel Treatment", value: "Heat-Resistant Ceramic" },
-                { label: "Glass Shield", value: "PFC Anti-Static Layer" },
+                {
+                  label: "Système de Revêtement",
+                  value: "Sio2 Liquide à Base de Quartz",
+                },
+                {
+                  label: "Traitement des Jantes",
+                  value: "Céramique Résistante à la Chaleur",
+                },
+                {
+                  label: "Bouclier de Verre",
+                  value: "Couche Antistatique PFC",
+                },
               ].map((spec) => (
                 <li class="flex flex-col gap-2 border-b border-white/5 pb-6">
                   <span class="text-[9px] tracking-[0.4em] text-gray-500 uppercase font-black">
@@ -225,10 +235,10 @@ const project = siteData.projects[0]; // Featured Project
       <div class="space-y-12 mb-32">
         <div class="flex justify-between items-end">
           <h2 class="text-4xl font-display uppercase tracking-tighter">
-            Visual Evidence
+            Preuve Visuelle
           </h2>
           <span class="text-xs tracking-[0.4em] text-gray-500 uppercase mb-2"
-            >Macro Photography</span
+            >Photographie Macro</span
           >
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -261,17 +271,17 @@ const project = siteData.projects[0]; // Featured Project
         class="py-24 border-y border-white/10 flex flex-col items-center text-center space-y-10"
       >
         <span class="text-xs tracking-[0.6em] text-brand uppercase font-bold"
-          >The Next Standard</span
+          >Le Prochain Standard</span
         >
         <h2
           class="text-4xl md:text-6xl font-display uppercase tracking-tight max-w-2xl px-6"
         >
-          READY TO RESTORE YOUR <span class="text-brand">CHASSIS 001?</span>
+          PRÊT À RESTAURER VOTRE <span class="text-brand">CHÂSSIS 001 ?</span>
         </h2>
         <button
           class="px-16 py-6 bg-white text-black text-xs tracking-[0.4em] uppercase font-black hover:bg-brand transition-all shadow-[0_0_50px_rgba(255,255,255,0.1)]"
         >
-          Request Project Analysis
+          Demander une Analyse de Projet
         </button>
       </div>
     </div>

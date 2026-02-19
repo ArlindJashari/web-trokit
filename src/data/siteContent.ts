@@ -23,13 +23,13 @@ export const siteData = {
   stats: [
     {
       value: 1,
-      label: "Happy customers",
+      label: "Clients Satisfaits",
       suffix: "K+",
       subtext: "Une expertise reconnue et appréciée par notre fidèle clientèle en Valais depuis 2018."
     },
     {
       value: 100,
-      label: "Perfect reviews",
+      label: "Avis Clients",
       suffix: "+",
       subtext: "Nous mettons un point d'honneur à fournir un travail d'orfèvre pour chaque véhicule."
     },
