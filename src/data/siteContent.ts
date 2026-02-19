@@ -48,7 +48,7 @@ export const siteData = {
       title: "Réparations diverses",
       description: "Nous sommes en mesure d’effectuer tous types de travaux de réparation ou d’embellissement sur votre véhicule et également sur les appareils aéronautique",
       fullDescription: "Nous sommes en mesure d’effectuer tous types de travaux de réparation ou d’embellissement sur votre véhicule et également sur les appareils aéronautique",
-      image: "/2.jpeg",
+      image: "https://images.pexels.com/photos/1729993/pexels-photo-1729993.jpeg",
       icon: "Sparkle",
     },
     {
@@ -146,7 +146,7 @@ export const siteData = {
       title: "Détails Carrosserie",
       category: "Finition Premium",
       description: "Polissage haute précision et protection céramique pour un brillant profond et durable.",
-      image: "/2.jpeg",
+      image: "https://images.pexels.com/photos/1729993/pexels-photo-1729993.jpeg",
       span: "md:col-span-1 md:row-span-1"
     },
     {
