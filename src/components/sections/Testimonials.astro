@@ -9,11 +9,59 @@ import {
 
 const googleReviews = [
   {
-    name: "Filipe Vaz",
+    name: "Faris Rizovic",
     initial: "F",
+    bgColor: "bg-blue-600",
+    time: "il y a 19 heures",
+    text: "Excellent travail, toujours disponible et très professionnel. Bravo à l'équipe 💪🏻",
+    rating: 5,
+  },
+  {
+    name: "Michael Lowe",
+    initial: "M",
+    bgColor: "bg-emerald-600",
+    time: "il y a 2 mois",
+    text: "Je crois Fidan, propriétaire de Elite SF sàrl, il voit toute la côté droite de ma voiture endommagé, plus de 17k de dégâts... en une semaine j'ai récupéré ma voiture comme neuve.",
+    rating: 5,
+  },
+  {
+    name: "Masella Alexandra",
+    initial: "M",
+    bgColor: "bg-purple-600",
+    time: "il y a 3 mois",
+    text: "J’ai fait une peinture complète pour une Mercedes Marco Polo, Mercedes Classe A et une poussette Cybex. Le service était impeccable, extrêmement professionnel...",
+    rating: 5,
+  },
+  {
+    name: "Alpine classic",
+    initial: "A",
     bgColor: "bg-orange-600",
     time: "il y a 3 mois",
-    text: "Patron super sympa. Travail de pros",
+    text: "Très pro très propre et équipé a l'écoute des souhaits et la finition comme on aime",
+    rating: 5,
+  },
+  {
+    name: "davidkawaninja tkmnany",
+    initial: "D",
+    bgColor: "bg-red-600",
+    time: "il y a 2 mois",
+    text: "Patron très sympa et je suis très content avec le travail sur ma RS 😀💪",
+    rating: 5,
+  },
+  {
+    name: "Valérie",
+    initial: "V",
+    bgColor: "bg-indigo-600",
+    time: "il y a 4 mois",
+    text: "merci beaucoup pour le beau poliche! Tout nettoyé, je suis contente, le chef très sympathique avec moi.",
+    rating: 5,
+  },
+  {
+    name: "Theo Jordan",
+    initial: "T",
+    bgColor: "bg-cyan-600",
+    time: "il y a 3 mois",
+    text: "Equipe professionnelle patron très acceuillant et vraiment satisfait du travail effectué sur ma voiture je recommande vraiment",
     rating: 5,
   },
   {
@@ -21,23 +69,103 @@ const googleReviews = [
     initial: "A",
     bgColor: "bg-slate-600",
     time: "il y a 3 mois",
-    text: "J'ai retrouvé ma voiture Encore mieux qu'au premier jour 🙏",
+    text: "J’ai retrouvé ma voiture Encore mieux qu’au premier jour 🙏",
     rating: 5,
   },
   {
-    name: "Alpine classic",
+    name: "G B",
+    initial: "G",
+    bgColor: "bg-teal-600",
+    time: "il y a 10 mois",
+    text: "Le patron très sympa et très accueillant, compétences, rapidité d’exécution, travail impeccable, qualité et prix au TOP. Je recommande avec un grand 👍👍👍",
+    rating: 5,
+  },
+  {
+    name: "Filipe Vaz",
+    initial: "F",
+    bgColor: "bg-pink-600",
+    time: "il y a 3 mois",
+    text: "Patron super sympa. Travail de pros",
+    rating: 5,
+  },
+  {
+    name: "Marta Micco",
+    initial: "M",
+    bgColor: "bg-rose-600",
+    time: "il y a un an",
+    text: "La meilleure carrosserie une équipe trop sympa ils ont reparer ma voiture avec classe je recommande les yeux fermés merci beaucoup et bravo a tous",
+    rating: 5,
+  },
+  {
+    name: "Stephane Haymoz",
+    initial: "S",
+    bgColor: "bg-sky-600",
+    time: "il y a un an",
+    text: "Professionnel, agréable, une super équipe 👌",
+    rating: 5,
+  },
+  {
+    name: "Marina Grunig",
+    initial: "M",
+    bgColor: "bg-lime-600",
+    time: "il y a un an",
+    text: "Disponibilité et travail au top du top. Je recommande à 100%",
+    rating: 5,
+  },
+  {
+    name: "M Ajvazi",
+    initial: "M",
+    bgColor: "bg-violet-600",
+    time: "il y a 5 ans",
+    text: "Excellent travail, prix très correctes, et respect des délais.. Merci",
+    rating: 5,
+  },
+  {
+    name: "stephanie Julise Formichi",
+    initial: "S",
+    bgColor: "bg-fuchsia-600",
+    time: "il y a 2 ans",
+    text: "Je recommande à 100% la carrosserie Élite à Conthey. Toujours disponible et surtout honnête.",
+    rating: 5,
+  },
+  {
+    name: "Ivan",
+    initial: "I",
+    bgColor: "bg-amber-600",
+    time: "il y a un an",
+    text: "Qualité, compétence, service! Tout au top!",
+    rating: 5,
+  },
+  {
+    name: "Albert Fraisier",
     initial: "A",
-    bgColor: "bg-blue-800",
-    time: "il y a 3 mois",
-    text: "Très pro très propre et équipé a l'écoute des souhaits et la finition comme on aime",
+    bgColor: "bg-yellow-600",
+    time: "il y a 4 ans",
+    text: "Patron et personnel au top. En attente d'un devis définitif pour la 5ème étoiles",
+    rating: 4,
+  },
+  {
+    name: "Steph Renz",
+    initial: "S",
+    bgColor: "bg-green-600",
+    time: "il y a 2 ans",
+    text: "Service au top !!! Merci",
     rating: 5,
   },
   {
-    name: "Theo Jordan",
-    initial: "T",
-    bgColor: "bg-neutral-700",
-    time: "il y a 3 mois",
-    text: "Equipe professionnel acueillant et vraiment travail effectué sur ma voiture recommande vraiment",
+    name: "Karine Uberti",
+    initial: "K",
+    bgColor: "bg-blue-800",
+    time: "il y a 4 ans",
+    text: "Service topissime 👍",
+    rating: 5,
+  },
+  {
+    name: "Gwendolin Herzog",
+    initial: "G",
+    bgColor: "bg-red-800",
+    time: "il y a 5 ans",
+    text: "Clean garage, professional, and quick. Fair pricing. Returned in April 2020. Same perfect professional service. Thank you.",
     rating: 5,
   },
 ];
@@ -62,8 +190,16 @@ const googleReviews = [
         }
       </div>
       <span class="text-xs tracking-widest text-gray-500 uppercase mb-6"
-        >Sur la base de 37 avis</span
+        >Sur la base de 38 avis</span
       >
+      {
+        /* 
+        NOTE: To update these reviews in real-time, you would need to integrate with the Google Places API 
+        (specifically the Place Details request) using a backend service to hide your API key, 
+        or use a third-party widget service like Elfsight. 
+        Client-side fetching directly from Google Maps is not supported due to CORS and security restrictions.
+      */
+      }
 
       {/* Google Logo */}
       <div class="flex items-center gap-1 text-2xl font-medium tracking-tight">
