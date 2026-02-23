@@ -135,42 +135,66 @@ export const siteData = {
   projects: [
     {
       id: 1,
-      title: "Restauration Porsche 911",
+      title: "Restauration Complète",
       category: "Peinture & Tôlerie",
-      description: "Remise à neuf complète de la carrosserie et application d'une peinture exclusive pour ce modèle iconique.",
-      image: "https://images.unsplash.com/photo-1614162692292-7ac56d7f7f1e?q=80&w=2670&auto=format&fit=crop",
+      description: "Transformation majeure d'un véhicule avec remise à neuf intégrale de la carrosserie.",
+      image: "/galerie/Elite1.jpg",
       span: "md:col-span-2 md:row-span-2"
     },
     {
       id: 2,
-      title: "Détails Carrosserie",
+      title: "Design & Couleur",
       category: "Finition Premium",
-      description: "Polissage haute précision et protection céramique pour un brillant profond et durable.",
-      image: "https://images.pexels.com/photos/1729993/pexels-photo-1729993.jpeg",
+      description: "Application de teintes exclusives et finitions de haute précision.",
+      image: "/galerie/Elite2.jpg",
       span: "md:col-span-1 md:row-span-1"
     },
     {
       id: 3,
-      title: "Gestion des Sinistres",
-      category: "Service Complet",
-      description: "Accompagnement total après accident : du remorquage à la remise des clés en parfait état.",
-      image: "https://images.unsplash.com/photo-1541899481282-d53bffe3c35d?q=80&w=2670&auto=format&fit=crop",
+      title: "Précision Technique",
+      category: "Tôlerie",
+      description: "Redressage et alignement parfait des éléments de carrosserie.",
+      image: "/galerie/Elite3.jpg",
       span: "md:col-span-1 md:row-span-2"
     },
     {
       id: 4,
-      title: "Peinture sur Mesure",
-      category: "Excellence Couleur",
-      description: "Recherche de teintes complexes et application soignée en cabine de peinture haute technologie.",
-      image: "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?q=80&w=2574&auto=format&fit=crop",
+      title: "Éclat & Brillance",
+      category: "Polissage",
+      description: "Traitement de surface pour un rendu miroir et une protection durable.",
+      image: "/galerie/Elite4.jpg",
       span: "md:col-span-1 md:row-span-1"
     },
     {
       id: 5,
-      title: "Optique & Détails",
-      category: "Précision",
-      description: "Rénovation d'optiques et finitions minutieuses pour une clarté absolue.",
-      image: "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?q=80&w=2766&auto=format&fit=crop",
+      title: "Détails Finitions",
+      category: "Expertise",
+      description: "Souci du détail sur chaque centimètre carré du véhicule.",
+      image: "/galerie/Elite5.jpg",
+      span: "md:col-span-1 md:row-span-1"
+    },
+    {
+      id: 6,
+      title: "Transformation Finale",
+      category: "Peinture",
+      description: "Résultat irréprochable après passage dans nos cabines de peinture.",
+      image: "/galerie/Elite6.jpg",
+      span: "md:col-span-1 md:row-span-1"
+    },
+    {
+      id: 7,
+      title: "Passion Automobile",
+      category: "Restauration",
+      description: "Redonner vie aux classiques avec le plus grand soin.",
+      image: "/galerie/Elite7.jpg",
+      span: "md:col-span-1 md:row-span-1"
+    },
+    {
+      id: 8,
+      title: "Excellence Valaisanne",
+      category: "Service Premium",
+      description: "La qualité Carrosserie Elite au service de votre véhicule.",
+      image: "/galerie/Etlite8.jpg",
       span: "md:col-span-1 md:row-span-1"
     }
   ]
