@@ -83,14 +83,6 @@ export const siteData = {
       image: "/services/6.jpeg",
       icon: "Disc",
     },
-    {
-      id: "nettoyage",
-      title: "Nettoyage",
-      description: "A chaque réparation, un nettoyage intérieur & extérieur vous est gracieusement offert!\n\nBien sûr nous offrons ce service également indépendamment d’une réparation carrosserie.",
-      fullDescription: "A chaque réparation, un nettoyage intérieur & extérieur vous est gracieusement offert!\n\nBien sûr nous offrons ce service également indépendamment d’une réparation carrosserie.",
-      image: "/Porsche_close_up.jpg",
-      icon: "Sparkle",
-    }
   ],
   introduction: {
     title: "À Propos",
