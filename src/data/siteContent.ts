@@ -40,7 +40,7 @@ export const siteData = {
       title: "Tôlerie",
       description: "Remettre en état des carrosseries aux formes et aux matériaux divers et innovants (voitures particulières, camions, bus, véhicules de collection).\n\nDémonter les pièces abîmées, rétablir leur forme initiale et remplacer les éléments non réparables par des pièces neuves.\n\nRéparer des dégâts légers par des opérations manuelles telles que débosselage, planage et redressage, tout comme de gros sinistres avec des appareils puissants et perfectionnés.",
       fullDescription: "Remettre en état des carrosseries aux formes et aux matériaux divers et innovants (voitures particulières, camions, bus, véhicules de collection).\n\nDémonter les pièces abîmées, rétablir leur forme initiale et remplacer les éléments non réparables par des pièces neuves.\n\nRéparer des dégâts légers par des opérations manuelles telles que débosselage, planage et redressage, tout comme de gros sinistres avec des appareils puissants et perfectionnés.",
-      image: "/1.jpeg",
+      image: "/services/4.jpeg",
       icon: "Wrench",
     },
     {
@@ -48,7 +48,7 @@ export const siteData = {
       title: "Réparations diverses",
       description: "Nous sommes en mesure d’effectuer tous types de travaux de réparation ou d’embellissement sur votre véhicule et également sur les appareils aéronautique",
       fullDescription: "Nous sommes en mesure d’effectuer tous types de travaux de réparation ou d’embellissement sur votre véhicule et également sur les appareils aéronautique",
-      image: "https://images.pexels.com/photos/1729993/pexels-photo-1729993.jpeg",
+      image: "/services/5.jpeg",
       icon: "Sparkle",
     },
     {
@@ -56,7 +56,7 @@ export const siteData = {
       title: "Peinture",
       description: "Peindre ou repeindre, embellir ou décorer divers supports comme les tôles, l’aluminium, les plastics, le polyester, etc.\n\nSupprimer les irrégularités, les rayures ou d’autres dégâts en mastiquant, en ponçant, etc.\n\nRechercher les teintes adéquates sur la base des indications fournies par les constructeurs automobiles, motos, poids lourds, les industriels en peinture ou autres.\n\nPréparer le mélange de peinture à base d’eau (hydrosoluble).\n\nGicler la peinture au moyen d’un pistolet dans une cabine prévue à cet effet.",
       fullDescription: "Peindre ou repeindre, embellir ou décorer divers supports comme les tôles, l’aluminium, les plastics, le polyester, etc.\n\nSupprimer les irrégularités, les rayures ou d’autres dégâts en mastiquant, en ponçant, etc.\n\nRechercher les teintes adéquates sur la base des indications fournies par les constructeurs automobiles, motos, poids lourds, les industriels en peinture ou autres.\n\nPréparer le mélange de peinture à base d’eau (hydrosoluble).\n\nGicler la peinture au moyen d’un pistolet dans une cabine prévue à cet effet.",
-      image: "/3.jpeg",
+      image: "/services/1.jpeg",
       icon: "PaintBrush",
     },
     {
@@ -64,7 +64,7 @@ export const siteData = {
       title: "Pare-brise",
       description: "Quel que soit le vitrage endommagé sur votre véhicule, nous pouvons vous aider.\n\nNous sommes en mesure de réparer tout type de vitrage quels que soient la marque ou le modèle du véhicule.\n\nNous offrons une garantie à vie sur notre travail.",
       fullDescription: "Quel que soit le vitrage endommagé sur votre véhicule, nous pouvons vous aider.\n\nNous sommes en mesure de réparer tout type de vitrage quels que soient la marque ou le modèle du véhicule.\n\nNous offrons une garantie à vie sur notre travail.",
-      image: "/4.jpeg",
+      image: "/services/2.jpeg",
       icon: "Eyeglasses",
     },
     {
@@ -72,7 +72,7 @@ export const siteData = {
       title: "Polissage & Lustrage",
       description: "Un polissage va avoir pour objectif de redonner un aspect lisse à la carrosserie et ôter les micro-rayures, les taches, l’oxydation de la peinture ou du vernis, rectifier les conséquences d’un entretien irrégulier ou de mauvaises techniques de lavage.\n\nLe lustrage est l’action de nourrir la peinture, d’apporter un aspect brillant et d’obtenir un magnifique effet miroir. Par conséquent, un lustrage ne corrige pas les défauts. C’est une étape de finition facultative, souvent utilisée sur des peintures foncées qui sont plus délicates que des peintures à ton claires.",
       fullDescription: "Un polissage va avoir pour objectif de redonner un aspect lisse à la carrosserie et ôter les micro-rayures, les taches, l’oxydation de la peinture ou du vernis, rectifier les conséquences d’un entretien irrégulier ou de mauvaises techniques de lavage.\n\nLe lustrage est l’action de nourrir la peinture, d’apporter un aspect brillant et d’obtenir un magnifique effet miroir. Par conséquent, un lustrage ne corrige pas les défauts. C’est une étape de finition facultative, souvent utilisée sur des peintures foncées qui sont plus délicates que des peintures à ton claires.",
-      image: "/5.jpeg",
+      image: "/services/3.jpeg",
       icon: "Sparkle",
     },
     {
@@ -80,7 +80,7 @@ export const siteData = {
       title: "Jantes",
       description: "Carrosserie Elite vous offre la possibilité de réparer une jante suite à un dégât.\n\nNous pouvons également modifier esthétiquement la couleur de vos jantes selon vos désirs.",
       fullDescription: "Carrosserie Elite vous offre la possibilité de réparer une jante suite à un dégât.\n\nNous pouvons également modifier esthétiquement la couleur de vos jantes selon vos désirs.",
-      image: "/6.jpeg",
+      image: "/services/6.jpeg",
       icon: "Disc",
     },
     {
