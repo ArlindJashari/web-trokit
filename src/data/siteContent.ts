@@ -115,28 +115,6 @@ export const siteData = {
       }
     ]
   },
-  features: [
-    {
-      title: "Expertise Technique",
-      description: "Une équipe qualifiée assure un travail précis, soigné et durable, répondant aux normes professionnelles les plus strictes.",
-      icon: "Wrench"
-    },
-    {
-      title: "Mobilité Garantie",
-      description: "Un véhicule de remplacement est mis à disposition durant toute la durée des réparations afin d’assurer votre mobilité.",
-      icon: "Car"
-    },
-    {
-      title: "Engagement Éco-Responsable",
-      description: "Utilisation de peintures écologiques Sikkens AkzoNobel à base d’eau, réduisant l’impact environnemental.",
-      icon: "Sparkle"
-    },
-    {
-      title: "Gestion Complète",
-      description: "Prise en charge intégrale de votre sinistre, avec gestion directe des démarches auprès de votre assurance.",
-      icon: "ShieldCheck"
-    }
-  ],
   projects: [
     {
       id: 1,
